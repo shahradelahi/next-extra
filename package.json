@@ -1,0 +1,59 @@
+{
+  "name": "next-extra",
+  "version": "0.0.0",
+  "description": "next-extra offers additional methods not included in the standard Next package, such as searchParams and pathname.",
+  "author": "Shahrad Elahi <shahrad@litehex.com> (https://github.com/shahradelahi)",
+  "license": "MIT",
+  "repository": "github:shahradelahi/next-extra",
+  "homepage": "https://github.com/shahradelahi/next-extra",
+  "keywords": [
+    "next",
+    "react"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./pathname": {
+      "require": "./dist/pathname.cjs",
+      "import": "./dist/pathname.js",
+      "types": "./dist/types/pathname.d.ts"
+    }
+  },
+  "files": [
+    "/dist/**/*",
+    "/src/**/*",
+    "!**/*.test.*"
+  ],
+  "packageManager": "pnpm@8.15.7",
+  "scripts": {
+    "build": "tsup && tsup --dts-only --outDir dist/types --format esm",
+    "typecheck": "tsc --noEmit",
+    "lint": "pnpm typecheck && eslint .",
+    "lint:fix": "eslint --fix .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "prepublishOnly": "pnpm lint && pnpm format:check && pnpm build"
+  },
+  "dependencies": {
+    "next": "^14"
+  },
+  "peerDependencies": {
+    "next": "^14"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
+    "@sindresorhus/tsconfig": "^5.0.0",
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.1",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  }
+}
