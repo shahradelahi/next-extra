@@ -10,6 +10,42 @@ npm install next-extra
 
 ## Usage
 
+### `next-extra/action`
+
+###### API
+
+```typescript
+function createAction(fn: Function): ActionFunc<T>;
+function actionError(code: string, message: string): ActionError;
+```
+
+###### Example
+
+```typescript jsx
+// -------------------- actions.ts -------------------- //
+'use server';
+
+import { actionError, createAction } from 'next-extra/action';
+
+export const hello = createAction(async (name: string) => {
+  if (!name) {
+    throw actionError('NAME_REQUIRED', 'Name is required');
+  }
+  return `Hello, ${name}!`;
+});
+
+// -------------------- page.tsx -------------------- //
+import { hello } from './actions';
+
+export default async function Page() {
+  const { data, error } = await hello('John');
+  if (error) {
+    return <h1>ERROR: {error.message}</h1>;
+  }
+  return <h1>{data}</h1>;
+}
+```
+
 ### `next-extra/pathname`
 
 Access `pathname` and `searchParams` of the incoming request for server-side components in the [App Router](https://nextjs.org/docs/app).
