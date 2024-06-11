@@ -1,25 +1,21 @@
 export class ActionError extends Error {
   constructor(
-    readonly code: string,
-    readonly description: string
+    public readonly code: string,
+    message: string
   ) {
-    super();
+    super(message);
     Error.captureStackTrace(this, ActionError);
-  }
-
-  static fromError(error: Error): ActionError {
-    return new ActionError(error.name, error.message);
   }
 
   toPlain(): ActionErrorPlain {
     return {
-      code: this.code,
-      description: this.description,
+      code: this.name,
+      message: this.message,
     };
   }
 }
 
 export interface ActionErrorPlain {
   code: string;
-  description: string;
+  message: string;
 }

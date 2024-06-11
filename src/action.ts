@@ -9,7 +9,6 @@ type ActionFunc<T> = T extends (...args: infer Args) => infer Return
   : never;
 
 export class Action<Return> {
-  #result: Return | undefined;
   #fn: AnyFunc<Context<any>>;
 
   constructor(fn: AnyFunc<Context<any>>) {
@@ -29,9 +28,9 @@ export class Action<Return> {
     try {
       const result_ = await this.#fn.apply(this, arguments_); // eslint-disable-line prefer-spread
       if (result_ !== undefined) {
-        return result_;
+        return { data: result_ };
       }
-      return this.#result;
+      return { data: void 0 };
     } catch (e) {
       if (!!e && typeof e === 'object' && 'data' in e) {
         return e;
@@ -62,8 +61,8 @@ export function createAction<T extends AnyFunc<Context<any>>>(fn: T): ActionFunc
   });
 }
 
-export function actionError(code: string, description: string): ActionError {
-  const e = new ActionError(code, description);
+export function actionError(code: string, message: string): ActionError {
+  const e = new ActionError(code, message);
   Error.captureStackTrace(e, actionError);
   return e;
 }
