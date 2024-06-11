@@ -38,6 +38,7 @@
     "lint:fix": "eslint --fix .",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
+    "test": "mocha \"**/*.test.ts\" --retries 2",
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {

@@ -38,8 +38,8 @@ export class Action<Return> {
       if (e instanceof ActionError) {
         return { error: e.toPlain() };
       }
-      if (!!e && typeof e === 'object' && 'code' in e && 'description' in e) {
-        return { error: new ActionError(String(e.code), String(e.description)).toPlain() };
+      if (!!e && typeof e === 'object' && 'code' in e && 'message' in e) {
+        return { error: { code: e.code, message: e.message } };
       }
       throw e;
     }

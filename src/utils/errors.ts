@@ -1,9 +1,10 @@
 export class ActionError extends Error {
   constructor(
-    public readonly code: string,
+    public code: string,
     message: string
   ) {
     super(message);
+    this.name = 'ActionError';
     Error.captureStackTrace(this, ActionError);
   }
 
