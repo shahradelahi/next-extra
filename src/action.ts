@@ -27,7 +27,7 @@ export class Action<Return> {
   /** @internal */
   async run(...arguments_: any[]) {
     try {
-      const result_ = await this.#fn.apply(this, arguments_);
+      const result_ = await this.#fn.apply(this, arguments_); // eslint-disable-line prefer-spread
       if (result_ !== undefined) {
         return result_;
       }
