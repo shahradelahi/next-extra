@@ -38,7 +38,7 @@
     "lint:fix": "eslint --fix .",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "prepublishOnly": "pnpm lint && pnpm format:check && pnpm build"
+    "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
     "next": "^14",
