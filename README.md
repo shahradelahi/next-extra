@@ -15,7 +15,7 @@ npm install next-extra
 ###### API
 
 ```typescript
-function createAction(fn: Function): ActionFunc<T>;
+function createAction(fn: Function): ActionFunc;
 function actionError(code: string, message: string): ActionError;
 ```
 
@@ -50,12 +50,31 @@ export default async function Page() {
 
 Access `pathname` and `searchParams` of the incoming request for server-side components in the [App Router](https://nextjs.org/docs/app).
 
+###### API
+
+```typescript
+function pathname(): string;
+function searchParams(): ReadonlyURLSearchParams;
+```
+
+###### Example
+
 ```typescript
 import { pathname, searchParams } from 'next-extra/pathname';
 import { headers } from 'next/headers';
 
-const fullurl = `${headers.get('host')}${pathname()}`; // http://localhost:3000/hello?name=shahrad
-const params = searchParams(); // ReadonlyURLSearchParams
+export default async function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const base = `${headers.get('x-forwarded-proto')}://${headers.get('host')}`;
+  const fullUrl = new URL(pathname(), base); // http://localhost:3000/hello?name=shahrad
+
+  const params = searchParams();
+
+  return children;
+}
 ```
 
 ## Contributing
