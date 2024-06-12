@@ -19,6 +19,11 @@
       "import": "./dist/index.js",
       "types": "./dist/types/index.d.ts"
     },
+    "./action": {
+      "require": "./dist/action.cjs",
+      "import": "./dist/action.js",
+      "types": "./dist/types/action.d.ts"
+    },
     "./pathname": {
       "require": "./dist/pathname.cjs",
       "import": "./dist/pathname.js",
