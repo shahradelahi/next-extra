@@ -53,6 +53,7 @@ Access `pathname` and `searchParams` of the incoming request for server-side com
 ###### API
 
 ```typescript
+function invokeUrl(): URL;
 function pathname(): string;
 function searchParams(): ReadonlyURLSearchParams;
 ```
@@ -60,18 +61,16 @@ function searchParams(): ReadonlyURLSearchParams;
 ###### Example
 
 ```typescript
-import { pathname, searchParams } from 'next-extra/pathname';
-import { headers } from 'next/headers';
+import { invokeUrl, pathname, searchParams } from 'next-extra/pathname';
 
 export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const base = `${headers.get('x-forwarded-proto')}://${headers.get('host')}`;
-  const fullUrl = new URL(pathname(), base); // http://localhost:3000/hello?name=shahrad
-
-  const params = searchParams();
+  const url = invokeUrl(); // instance of URL; http://localhost:3000/hello?name=John
+  const path = pathname(); // /hello
+  const params = searchParams(); // ReadonlyURLSearchParams { 'name' => 'John' }
 
   return children;
 }
