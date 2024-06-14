@@ -1,25 +1,35 @@
 import { staticGenerationAsyncStorage } from 'next/dist/client/components/static-generation-async-storage.external';
-import { trackDynamicDataAccessed } from 'next/dist/server/app-render/dynamic-rendering';
 
 import { ReadonlyURLSearchParams } from './utils/search-params';
 
-export function pathname(): string {
-  const expression = 'pathname';
+export function invokeUrl(): URL {
+  const expression = 'invokeUrl';
   const store = staticGenerationAsyncStorage.getStore();
 
   if (!store) {
     throw new Error(`Invariant: static generation store missing in ${expression}`);
   }
 
-  if (!store.forceStatic) {
-    trackDynamicDataAccessed(store, expression);
+  const { incrementalCache, urlPathname } = store;
+  if (!incrementalCache) {
+    throw new Error(`Invariant: incremental cache missing in ${expression}`);
   }
 
-  return Object.freeze(store.urlPathname);
+  const { requestHeaders } = incrementalCache;
+
+  const base = `${requestHeaders['x-forwarded-proto']}://${requestHeaders['host']}`;
+
+  return new URL(urlPathname, base);
+}
+
+export function pathname(): string {
+  const url = invokeUrl();
+
+  return url.pathname;
 }
 
 export function searchParams(): ReadonlyURLSearchParams {
-  const params = ReadonlyURLSearchParams.from(pathname());
+  const url = invokeUrl();
 
-  return new ReadonlyURLSearchParams(params);
+  return new ReadonlyURLSearchParams(url.searchParams);
 }
