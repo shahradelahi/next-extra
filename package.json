@@ -1,6 +1,6 @@
 {
   "name": "next-extra",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "next-extra offers additional methods not included in the standard Next package, such as searchParams and pathname.",
   "author": "Shahrad Elahi <shahrad@litehex.com> (https://github.com/shahradelahi)",
   "license": "MIT",
