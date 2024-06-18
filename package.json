@@ -47,10 +47,13 @@
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
+    "deepmerge": "^4",
     "next": "^14",
-    "p-safe": "^1.0.0"
+    "p-safe": "^1",
+    "react": "^18"
   },
   "peerDependencies": {
+    "@types/react": "^18",
     "next": "^14"
   },
   "devDependencies": {
