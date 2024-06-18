@@ -24,6 +24,11 @@
       "import": "./dist/action.js",
       "types": "./dist/types/action.d.ts"
     },
+    "./context": {
+      "require": "./dist/context.cjs",
+      "import": "./dist/context.js",
+      "types": "./dist/types/context.d.ts"
+    },
     "./pathname": {
       "require": "./dist/pathname.cjs",
       "import": "./dist/pathname.js",
