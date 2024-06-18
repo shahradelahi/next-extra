@@ -4,6 +4,7 @@ import deepmerge from 'deepmerge';
 import React from 'react';
 
 export interface PageContextProps<T = any> {
+  /** Defaults to `merge`. */
   strategy?: PageContextStrategy;
   data: T;
   children?: React.ReactNode;
@@ -34,6 +35,7 @@ export function PageContext<T = any>({ data, strategy, children }: PageContextPr
 }
 
 export interface UsePageContextOptions {
+  /** Determines if the context should be isolated to the window. */
   isolate?: boolean;
 }
 

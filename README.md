@@ -46,6 +46,47 @@ export default async function Page() {
 }
 ```
 
+### `next-extra/context`
+
+###### API
+
+```typescript
+function PageContext<T = any>(props: PageContextProps<T>): JSX.Element;
+function usePageContext<T = any>(opts: UsePageContextOptions): T;
+```
+
+###### Example
+
+```typescript jsx
+// -------------------- layout.tsx -------------------- //
+import { PageContext } from 'next-extra/context';
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  return <PageContext data={{ ts: Date.now() }}>{children}</PageContext>;
+}
+
+// -------------------- qoutes/layout.tsx -------------------- //
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  return <PageContext data={{ quote: 'Guillermo Rauch is a handsome dude!' }}>{children}</PageContext>;
+}
+
+// -------------------- qoutes/page.tsx -------------------- //
+'use client';
+
+interface Context {
+  ts: number
+  quote: string
+}
+
+export default function Page() {
+  const { id, quote } = usePageContext<Context>({ isolate: false });
+
+  return <h1>{ctx.quote}</h1>;
+}
+
+
+```
+
 ### `next-extra/pathname`
 
 Access `pathname` and `searchParams` of the incoming request for server-side components in the [App Router](https://nextjs.org/docs/app).
