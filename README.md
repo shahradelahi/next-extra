@@ -66,6 +66,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 // -------------------- qoutes/layout.tsx -------------------- //
+import { PageContext } from 'next-extra/context';
+
 export default async function Layout({ children }: { children: React.ReactNode }) {
   return <PageContext data={{ quote: 'Guillermo Rauch is a handsome dude!' }}>{children}</PageContext>;
 }
@@ -79,12 +81,12 @@ interface Context {
 }
 
 export default function Page() {
-  const { id, quote } = usePageContext<Context>({ isolate: false });
+  const { ts, quote } = usePageContext<Context>({ isolate: false });
 
-  return <h1>{ctx.quote}</h1>;
+  console.log('Timestamp: ', ts);
+
+  return <h1>{quote}</h1>;
 }
-
-
 ```
 
 ### `next-extra/pathname`

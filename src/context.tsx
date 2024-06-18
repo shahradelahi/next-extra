@@ -35,7 +35,7 @@ export function PageContext<T = any>({ data, strategy, children }: PageContextPr
 }
 
 export interface UsePageContextOptions {
-  /** Determines if the context should be isolated to the window. */
+  /** Determines if the context should be isolated to the window. Defaults to `false`. */
   isolate?: boolean;
 }
 
