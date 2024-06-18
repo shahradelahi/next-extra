@@ -58,7 +58,7 @@
     "react": "^18"
   },
   "peerDependencies": {
-    "@types/react": "^18",
+    "react": "^18",
     "next": "^14"
   },
   "devDependencies": {
