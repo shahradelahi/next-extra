@@ -24,6 +24,11 @@
       "import": "./dist/action.js",
       "types": "./dist/types/action.d.ts"
     },
+    "./context": {
+      "require": "./dist/context.cjs",
+      "import": "./dist/context.js",
+      "types": "./dist/types/context.d.ts"
+    },
     "./pathname": {
       "require": "./dist/pathname.cjs",
       "import": "./dist/pathname.js",
@@ -47,10 +52,13 @@
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
+    "deepmerge": "^4",
     "next": "^14",
-    "p-safe": "^1.0.0"
+    "p-safe": "^1",
+    "react": "^18"
   },
   "peerDependencies": {
+    "react": "^18",
     "next": "^14"
   },
   "devDependencies": {
