@@ -86,7 +86,7 @@ export function clientIP() {
   if (hs.has('x-forwarded-for')) {
     const forwardedIp = getClientIpFromXForwardedFor(hs.get('x-forwarded-for'));
     if (forwardedIp) {
-      return forwardedIp!;
+      return forwardedIp;
     }
   }
 
@@ -128,8 +128,8 @@ export function clientIP() {
   for (const headerKey of headerKeys) {
     if (hs.has(headerKey)) {
       const ip = hs.get(headerKey);
-      if (isIP(ip)) {
-        return ip!;
+      if (ip && isIP(ip)) {
+        return ip;
       }
     }
   }
