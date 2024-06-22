@@ -16,7 +16,7 @@ npm install next-extra
 
 ```typescript
 function createAction(fn: Function): ActionFunc;
-function actionError(code: string, message: string): ActionError;
+function actionError(code: string, message: string): never;
 function clientIP(): string;
 ```
 
@@ -30,7 +30,7 @@ import { actionError, createAction } from 'next-extra/action';
 
 export const hello = createAction(async (name: string) => {
   if (!name) {
-    throw actionError('NAME_REQUIRED', 'Name is required');
+    actionError('NAME_REQUIRED', 'Name is required');
   }
   return `Hello, ${name}!`;
 });

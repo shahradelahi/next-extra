@@ -17,11 +17,11 @@ export class Action<Return> {
     this.#fn = fn;
   }
 
-  resolve(result: Return) {
+  resolve(result: Return): never {
     throw { data: result };
   }
 
-  reject(reason: ActionErrorPlain | ActionError) {
+  reject(reason: ActionErrorPlain | ActionError): never {
     throw reason;
   }
 
@@ -49,8 +49,8 @@ export class Action<Return> {
 }
 
 export interface Context<Return> {
-  resolve: (result: Return) => void;
-  reject: (error: ActionErrorPlain | ActionError) => void;
+  resolve: (result: Return) => never;
+  reject: (error: ActionErrorPlain | ActionError) => never;
 }
 
 export function createAction<T extends AnyFunc<Context<any>>>(fn: T): ActionFunc<T> {
@@ -63,10 +63,10 @@ export function createAction<T extends AnyFunc<Context<any>>>(fn: T): ActionFunc
   });
 }
 
-export function actionError(code: string, message: string): ActionError {
+export function actionError(code: string, message: string): never {
   const e = new ActionError(code, message);
   Error.captureStackTrace(e, actionError);
-  return e;
+  throw e;
 }
 
 /**
