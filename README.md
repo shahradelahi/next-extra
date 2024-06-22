@@ -17,6 +17,7 @@ npm install next-extra
 ```typescript
 function createAction(fn: Function): ActionFunc;
 function actionError(code: string, message: string): ActionError;
+function clientIP(): string;
 ```
 
 ###### Example
