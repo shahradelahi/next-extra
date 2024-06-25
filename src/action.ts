@@ -1,3 +1,5 @@
+import { ResponseCookies } from '@edge-runtime/cookies';
+import { requestAsyncStorage } from 'next/dist/client/components/request-async-storage.external';
 import { headers } from 'next/headers';
 import type { SafeReturn } from 'p-safe';
 
@@ -67,6 +69,17 @@ export function actionError(code: string, message: string): never {
   const e = new ActionError(code, message);
   Error.captureStackTrace(e, actionError);
   throw e;
+}
+
+export function cookies(): ResponseCookies {
+  const expression = 'cookies';
+  const store = requestAsyncStorage.getStore();
+
+  if (!store) {
+    throw new Error(`Invariant: request storage is missing in ${expression}`);
+  }
+
+  return store.mutableCookies;
 }
 
 /**
@@ -185,3 +198,7 @@ function getClientIpFromXForwardedFor(value: any) {
   // If no value in the split list is an ip, return null
   return null;
 }
+
+// -- Third -----------------------------
+
+export { ResponseCookies };
