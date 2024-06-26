@@ -1,3 +1,5 @@
+import { ResponseCookies } from '@edge-runtime/cookies';
+import { requestAsyncStorage } from 'next/dist/client/components/request-async-storage.external';
 import { headers } from 'next/headers';
 import type { SafeReturn } from 'p-safe';
 
@@ -67,6 +69,50 @@ export function actionError(code: string, message: string): never {
   const e = new ActionError(code, message);
   Error.captureStackTrace(e, actionError);
   throw e;
+}
+
+/**
+ * Handles HTTP cookies for server-side components and actions.
+ *
+ * This function serves two primary purposes:
+ * 1. Reading cookies from an incoming HTTP request when used in a Server Component.
+ * 2. Writing cookies to an outgoing HTTP response when used in a Server Component, Server Action, or Route Handler.
+ *
+ * This function leverages a shared request storage mechanism to access or modify the cookies.
+ *
+ * @returns {ResponseCookies} An object representing the mutable cookies for the current HTTP request context.
+ *
+ * @throws {Error} Throws an error if the request storage is not available, indicating an internal consistency issue.
+ *
+ * @example
+ * // Reading cookies in a Server Component
+ * const requestCookies = cookies();
+ * console.log(requestCookies.get('sessionId'));
+ *
+ * @example
+ * // Writing cookies in a Server Action
+ * export async function myAction() {
+ *   const responseCookies = cookies();
+ *   responseCookies.set('sessionId', 'abc123', { httpOnly: true });
+ * }
+ *
+ * @example
+ * // Modifying cookies in a Route Handler
+ * export default function handler(req, res) {
+ *   const responseCookies = cookies();
+ *   responseCookies.delete('sessionId');
+ *   res.end('Cookie deleted');
+ * }
+ */
+export function cookies(): ResponseCookies {
+  const expression = 'cookies';
+  const store = requestAsyncStorage.getStore();
+
+  if (!store) {
+    throw new Error(`Invariant: request storage is missing in ${expression}`);
+  }
+
+  return store.mutableCookies;
 }
 
 /**
@@ -185,3 +231,7 @@ function getClientIpFromXForwardedFor(value: any) {
   // If no value in the split list is an ip, return null
   return null;
 }
+
+// -- Third -----------------------------
+
+export { ResponseCookies };

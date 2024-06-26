@@ -52,6 +52,7 @@
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
+    "@edge-runtime/cookies": "^4",
     "deepmerge": "^4",
     "next": "^14",
     "p-safe": "^1",
