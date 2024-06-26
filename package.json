@@ -12,27 +12,39 @@
   ],
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "import": "./dist/index.js"
     },
     "./action": {
       "require": "./dist/action.cjs",
-      "import": "./dist/action.js",
-      "types": "./dist/types/action.d.ts"
+      "import": "./dist/action.js"
     },
     "./context": {
       "require": "./dist/context.cjs",
-      "import": "./dist/context.js",
-      "types": "./dist/types/context.d.ts"
+      "import": "./dist/context.js"
     },
     "./pathname": {
       "require": "./dist/pathname.cjs",
-      "import": "./dist/pathname.js",
-      "types": "./dist/types/pathname.d.ts"
+      "import": "./dist/pathname.js"
+    }
+  },
+  "types": "./dist",
+  "typesVersions": {
+    "*": {
+      "action": [
+        "dist/action.d.cts",
+        "dist/action.d.ts"
+      ],
+      "context": [
+        "dist/context.d.cts",
+        "dist/context.d.ts"
+      ],
+      "pathname": [
+        "dist/pathname.d.cts",
+        "dist/pathname.d.ts"
+      ]
     }
   },
   "files": [
@@ -42,7 +54,7 @@
   ],
   "packageManager": "pnpm@8.15.7",
   "scripts": {
-    "build": "tsup && tsup --dts-only --outDir dist/types --format esm",
+    "build": "tsup",
     "typecheck": "tsc --noEmit",
     "lint": "pnpm typecheck && eslint .",
     "lint:fix": "eslint --fix .",
