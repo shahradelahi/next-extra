@@ -24,7 +24,7 @@ function clientIP(): string;
 ###### Example
 
 ```typescript jsx
-// -------------------- actions.ts -------------------- //
+// -- actions.ts ------------------------------ //
 'use server';
 
 import { actionError, createAction } from 'next-extra/action';
@@ -36,7 +36,7 @@ export const hello = createAction(async (name: string) => {
   return `Hello, ${name}!`;
 });
 
-// -------------------- page.tsx -------------------- //
+// -- page.tsx -------------------------------- //
 import { hello } from './actions';
 
 export default async function Page() {
@@ -60,21 +60,21 @@ function usePageContext<T = any>(opts: UsePageContextOptions): T;
 ###### Example
 
 ```typescript jsx
-// -------------------- layout.tsx -------------------- //
+// -- layout.tsx ------------------------------ //
 import { PageContext } from 'next-extra/context';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return <PageContext data={{ ts: Date.now() }}>{children}</PageContext>;
 }
 
-// -------------------- qoutes/layout.tsx -------------------- //
+// -- qoutes/layout.tsx ----------------------- //
 import { PageContext } from 'next-extra/context';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   return <PageContext data={{ quote: 'Guillermo Rauch is a handsome dude!' }}>{children}</PageContext>;
 }
 
-// -------------------- qoutes/page.tsx -------------------- //
+// -- qoutes/page.tsx ------------------------- //
 'use client';
 
 interface Context {
