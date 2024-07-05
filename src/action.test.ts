@@ -16,7 +16,9 @@ describe('Action', () => {
         await action('foo');
         expect(true).to.be.false;
       } catch (e) {
-        expect(e).to.be.instanceOf(Error).property('message', 'foo');
+        expect(e).to.be.instanceOf(Error);
+        expect(e).have.property('name', 'Error');
+        expect(e).have.property('message', 'foo');
       }
     });
 
@@ -38,7 +40,9 @@ describe('Action', () => {
         await action('poo');
         expect(true).to.be.false;
       } catch (e) {
-        expect(e).to.be.instanceOf(Error).property('message', 'NOt tHe PoO!');
+        expect(e).to.be.instanceOf(Error);
+        expect(e).have.property('name', 'Error');
+        expect(e).have.property('message', 'NOt tHe PoO!');
       }
     });
   });
