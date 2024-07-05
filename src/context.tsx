@@ -45,15 +45,15 @@ export interface UsePageContextOptions {
 
 export function usePageContext<T = Record<string, any>>(
   opts?: UsePageContextOptions & { isolate: true | undefined }
-): T;
+): Readonly<T>;
 
 export function usePageContext<T = Record<string, any>>(
   opts?: UsePageContextOptions & { isolate: false }
-): T | undefined;
+): Readonly<T | undefined>;
 
 export function usePageContext<T = Record<string, any>>(
   opts?: UsePageContextOptions
-): T | undefined {
+): Readonly<T | undefined> {
   const { isolate = true } = opts || {};
 
   const ctx = React.useContext(Context);
