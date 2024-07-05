@@ -35,19 +35,38 @@ export function PageContext<T = any>({ data, strategy, children }: PageContextPr
 }
 
 export interface UsePageContextOptions {
-  /** Determines if the context should be isolated to the window. Defaults to `false`. */
+  /**
+   * Determines context should be from the adjacent layout or not. Defaults to `true`.
+   *
+   * When you set this to `false`, the context is only usable on client-side after hydration.
+   */
   isolate?: boolean;
 }
 
-export function usePageContext<T = Record<string, any>>(opts: UsePageContextOptions = {}): T {
-  const { isolate = false } = opts;
+export function usePageContext<T = Record<string, any>>(
+  opts?: UsePageContextOptions & { isolate: true | undefined }
+): Readonly<T>;
 
-  if (typeof window === 'undefined' || isolate) {
-    // Probably Pre-rendering or StaticGeneration
-    return React.useContext(Context);
-  }
+export function usePageContext<T = Record<string, any>>(
+  opts?: UsePageContextOptions & { isolate: false }
+): Readonly<T | undefined>;
+
+export function usePageContext<T = Record<string, any>>(
+  opts?: UsePageContextOptions
+): Readonly<T | undefined> {
+  const { isolate = true } = opts || {};
+
+  const ctx = React.useContext(Context);
 
   const data = React.useMemo(() => {
+    if (isolate) {
+      return ctx;
+    }
+
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
     let context = {} as T;
 
     for (const [s, { data }] of window.__next_c || []) {
@@ -59,7 +78,7 @@ export function usePageContext<T = Record<string, any>>(opts: UsePageContextOpti
     }
 
     return context;
-  }, []);
+  }, [isolate]);
 
   return data;
 }
