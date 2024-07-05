@@ -20,6 +20,12 @@ declare global {
 
 const Context = React.createContext<any>(null);
 
+/**
+ * A component that provides context data to its children.
+ *
+ * @param props - The properties for the PageContext component.
+ * @returns A JSX element that provides the context to its children.
+ */
 export function PageContext<T = any>({ data, strategy, children }: PageContextProps<T>) {
   const serializedData = JSON.stringify([strategy ?? 'merge', { data }]);
   return (

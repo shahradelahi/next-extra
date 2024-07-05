@@ -8,7 +8,9 @@
   "homepage": "https://github.com/shahradelahi/next-extra",
   "keywords": [
     "next",
-    "react"
+    "nextjs",
+    "react",
+    "next-extra"
   ],
   "type": "module",
   "main": "dist/index.js",

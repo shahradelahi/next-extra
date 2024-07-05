@@ -50,6 +50,8 @@ export default async function Page() {
 
 ### `next-extra/context`
 
+This module provides utilities for passing serializable data from the **server layout** to **client page components** in the Next.js [App Router](https://nextjs.org/docs/app). It is particularly useful for sharing context-specific data across your application without the need to re-fetch data, thereby saving computing resources and improving performance.
+
 ###### API
 
 ```typescript
@@ -67,14 +69,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return <PageContext data={{ ts: Date.now() }}>{children}</PageContext>;
 }
 
-// -- qoutes/layout.tsx ----------------------- //
+// -- quotes/layout.tsx ----------------------- //
 import { PageContext } from 'next-extra/context';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   return <PageContext data={{ quote: 'Guillermo Rauch is a handsome dude!' }}>{children}</PageContext>;
 }
 
-// -- qoutes/page.tsx ------------------------- //
+// -- quotes/page.tsx ------------------------- //
 'use client';
 
 interface Context {
@@ -83,7 +85,7 @@ interface Context {
 }
 
 export default function Page() {
-  const { ts, quote } = usePageContext<Context>({ isolate: false });
+  const { ts, quote } = usePageContext<Context>();
 
   console.log('Timestamp: ', ts);
 
