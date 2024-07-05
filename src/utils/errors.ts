@@ -1,16 +1,16 @@
 export class ActionError extends Error {
+  override name = 'ActionError';
   constructor(
     public code: string,
     message: string
   ) {
     super(message);
-    this.name = 'ActionError';
     Error.captureStackTrace(this, ActionError);
   }
 
   toPlain(): ActionErrorPlain {
     return {
-      code: this.name,
+      code: this.code,
       message: this.message,
     };
   }
