@@ -41,7 +41,7 @@ function clientIP(): string;
 ###### Example
 
 ```typescript jsx
-// -- actions.ts ------------------------------ //
+// -- actions.ts
 'use server';
 
 import { actionError, createAction } from 'next-extra/action';
@@ -52,8 +52,10 @@ export const hello = createAction(async (name: string) => {
   }
   return `Hello, ${name}!`;
 });
+```
 
-// -- page.tsx -------------------------------- //
+```typescript jsx
+// -- page.tsx
 import { hello } from './actions';
 
 export default async function Page() {
