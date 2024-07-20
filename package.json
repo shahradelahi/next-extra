@@ -54,7 +54,7 @@
     "/src/**/*",
     "!**/*.test.*"
   ],
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
@@ -66,7 +66,7 @@
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
-    "@edge-runtime/cookies": "^4",
+    "@edge-runtime/cookies": "^5",
     "deepmerge": "^4",
     "p-safe": "^1"
   },
@@ -75,20 +75,20 @@
     "react": "^18 || ^19"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.3.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@sindresorhus/tsconfig": "^6.0.0",
     "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^20.14.10",
-    "@types/react": "^18.3.3",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@types/node": "^20.14.11",
+    "@types/react": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
     "chai": "^5.1.1",
     "eslint": "^8.57.0",
-    "mocha": "^10.6.0",
+    "mocha": "^10.7.0",
     "next": "^14",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "react": "^18",
-    "tsup": "^8.1.0",
+    "tsup": "8.1.2",
     "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   }
