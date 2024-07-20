@@ -68,13 +68,11 @@
   "dependencies": {
     "@edge-runtime/cookies": "^4",
     "deepmerge": "^4",
-    "next": "^14",
-    "p-safe": "^1",
-    "react": "^18"
+    "p-safe": "^1"
   },
   "peerDependencies": {
-    "next": "^14",
-    "react": "^18"
+    "next": "^14 || ^15",
+    "react": "^18 || ^19"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.3.0",
@@ -87,7 +85,9 @@
     "chai": "^5.1.1",
     "eslint": "^8.57.0",
     "mocha": "^10.6.0",
+    "next": "^14",
     "prettier": "^3.3.2",
+    "react": "^18",
     "tsup": "^8.1.0",
     "tsx": "^4.16.2",
     "typescript": "^5.5.3"

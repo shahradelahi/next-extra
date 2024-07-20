@@ -1,25 +1,9 @@
-import {
-  staticGenerationAsyncStorage as _staticGenerationAsyncStorage,
-  type StaticGenerationAsyncStorage,
-} from 'next/dist/client/components/static-generation-async-storage.external';
 import { headers } from 'next/headers';
 
-import { ReadonlyURLSearchParams } from './utils/search-params';
+import { getExpectedRequestStore, getExpectedStaticGenerationStore } from '@/utils/async-storages';
+import { ReadonlyURLSearchParams } from '@/utils/search-params';
 
-function getExpectedStaticGenerationStore(callingExpression: string) {
-  const staticGenerationStore =
-    ((fetch as any).__nextGetStaticStore?.() as StaticGenerationAsyncStorage | undefined) ??
-    _staticGenerationAsyncStorage;
-
-  const store = staticGenerationStore.getStore();
-  if (!store) {
-    throw new Error(
-      `Invariant: \`${callingExpression}\` expects to have staticGenerationAsyncStorage, none available.`
-    );
-  }
-
-  return store;
-}
+// -- Internal ------------------------
 
 function getRequestOrigin() {
   const requestHeaders = headers();
@@ -30,10 +14,25 @@ function getRequestOrigin() {
 }
 
 function getRequestURL(callingExpression: string): URL {
-  const store = getExpectedStaticGenerationStore(callingExpression);
+  const staticStore = getExpectedStaticGenerationStore(callingExpression);
   const origin = getRequestOrigin();
-  return new URL(store.urlPathname, origin);
+
+  if ('urlPathname' in staticStore && !!staticStore.urlPathname) {
+    return new URL(staticStore.urlPathname, origin);
+  }
+
+  const requestStore = getExpectedRequestStore(callingExpression);
+  if ('url' in requestStore && !!requestStore.url) {
+    return new URL(`${requestStore.url.pathname}${requestStore.url.search}`, origin);
+  }
+
+  // We should never get here.
+  throw new Error(
+    `\`${callingExpression}\` could not access the request URL. Probably you should report this as a bug. GitHub: https://github.com/shahradelahi/next-extra/issues`
+  );
 }
+
+// -- Exported ------------------------
 
 /** @deprecated This method will be removed in the next major release. */
 export function invokeUrl(): URL {
