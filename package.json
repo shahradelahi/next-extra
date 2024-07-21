@@ -83,7 +83,7 @@
     "@types/react": "^18",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "chai": "^5.1.1",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "mocha": "^10.7.0",
     "next": "^14",
     "prettier": "^3.3.3",
