@@ -1,10 +1,12 @@
 import { ResponseCookies } from '@edge-runtime/cookies';
-import { requestAsyncStorage } from 'next/dist/client/components/request-async-storage.external';
 import { headers } from 'next/headers';
 import type { SafeReturn } from 'p-safe';
 
+import { getExpectedRequestStore } from '@/utils/async-storages';
 import { ActionError, type ActionErrorPlain } from '@/utils/errors';
 import { isIP } from '@/utils/ip';
+
+// -- Types ---------------------------
 
 type AnyFunc<This = void> = (this: This, ...args: readonly any[]) => unknown;
 
@@ -12,10 +14,17 @@ type ActionFunc<T> = T extends (...args: infer Args) => infer Return
   ? (this: any, ...args: Args) => Promise<SafeReturn<Awaited<Return>, ActionError>>
   : never;
 
-export class Action<Return> {
-  #fn: AnyFunc<Context<any>>;
+interface ActionContext<Return> {
+  resolve: (result: Return) => never;
+  reject: (error: ActionErrorPlain | ActionError) => never;
+}
 
-  constructor(fn: AnyFunc<Context<any>>) {
+// -- Internal ------------------------
+
+class Action<Return> {
+  #fn: AnyFunc<ActionContext<any>>;
+
+  constructor(fn: AnyFunc<ActionContext<any>>) {
     this.#fn = fn;
   }
 
@@ -50,12 +59,60 @@ export class Action<Return> {
   }
 }
 
-export interface Context<Return> {
-  resolve: (result: Return) => never;
-  reject: (error: ActionErrorPlain | ActionError) => never;
+/**
+ * Parses the 'x-forwarded-for' header to extract the client's IP address.
+ *
+ * This header may contain multiple IP addresses in the format "client IP, proxy 1 IP, proxy 2 IP".
+ * This function extracts and returns the first valid IP address.
+ *
+ * @link https://github.com/pbojinov/request-ip/blob/e1d0f4b89edf26c77cf62b5ef662ba1a0bd1c9fd/src/index.js#L9
+ */
+function getClientIpFromXForwardedFor(value: any) {
+  if (value === null) {
+    return null;
+  }
+
+  if (typeof value !== 'string') {
+    throw new TypeError(`Expected a string, got "${typeof value}"`);
+  }
+
+  // x-forwarded-for may return multiple IP addresses in the format:
+  // "client IP, proxy 1 IP, proxy 2 IP"
+  // Therefore, the right-most IP address is the IP address of the most recent proxy
+  // and the left-most IP address is the IP address of the originating client.
+  // source: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For
+  // Azure Web App's also adds a port for some reason, so we'll only use the first part (the IP)
+  const forwardedIps = value.split(',').map((e) => {
+    const ip = e.trim();
+    if (ip.includes(':')) {
+      const splitted = ip.split(':');
+      // make sure we only use this if it's ipv4 (ip:port)
+      if (splitted.length === 2) {
+        return splitted[0];
+      }
+    }
+    return ip;
+  });
+
+  // Sometimes IP addresses in this header can be 'unknown' (http://stackoverflow.com/a/11285650).
+  // Therefore, taking the right-most IP address that is not unknown
+  // A Squid configuration directive can also set the value to "unknown" (http://www.squid-cache.org/Doc/config/forwarded_for/)
+  for (let i = 0; i < forwardedIps.length; i++) {
+    const ip = forwardedIps[i];
+    if (ip && isIP(ip)) {
+      return ip;
+    }
+  }
+
+  // If no value in the split list is an ip, return null
+  return null;
 }
 
-export function createAction<T extends AnyFunc<Context<any>>>(fn: T): ActionFunc<T> {
+// -- Exported ------------------------
+
+export type { Action };
+
+export function createAction<T extends AnyFunc<ActionContext<any>>>(fn: T): ActionFunc<T> {
   const action = new Action<T>(fn);
 
   return new Proxy(fn as any, {
@@ -106,11 +163,7 @@ export function actionError(code: string, message: string): never {
  */
 export function cookies(): ResponseCookies {
   const expression = 'cookies';
-  const store = requestAsyncStorage.getStore();
-
-  if (!store) {
-    throw new Error(`Invariant: request storage is missing in ${expression}`);
-  }
+  const store = getExpectedRequestStore(expression);
 
   return store.mutableCookies;
 }
@@ -183,55 +236,6 @@ export function clientIP() {
   throw new Error('Unable to determine client IP address from request headers');
 }
 
-/**
- * Parses the 'x-forwarded-for' header to extract the client's IP address.
- *
- * This header may contain multiple IP addresses in the format "client IP, proxy 1 IP, proxy 2 IP".
- * This function extracts and returns the first valid IP address.
- *
- * @link https://github.com/pbojinov/request-ip/blob/e1d0f4b89edf26c77cf62b5ef662ba1a0bd1c9fd/src/index.js#L9
- */
-function getClientIpFromXForwardedFor(value: any) {
-  if (value === null) {
-    return null;
-  }
+// -- Third ---------------------------
 
-  if (typeof value !== 'string') {
-    throw new TypeError(`Expected a string, got "${typeof value}"`);
-  }
-
-  // x-forwarded-for may return multiple IP addresses in the format:
-  // "client IP, proxy 1 IP, proxy 2 IP"
-  // Therefore, the right-most IP address is the IP address of the most recent proxy
-  // and the left-most IP address is the IP address of the originating client.
-  // source: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For
-  // Azure Web App's also adds a port for some reason, so we'll only use the first part (the IP)
-  const forwardedIps = value.split(',').map((e) => {
-    const ip = e.trim();
-    if (ip.includes(':')) {
-      const splitted = ip.split(':');
-      // make sure we only use this if it's ipv4 (ip:port)
-      if (splitted.length === 2) {
-        return splitted[0];
-      }
-    }
-    return ip;
-  });
-
-  // Sometimes IP addresses in this header can be 'unknown' (http://stackoverflow.com/a/11285650).
-  // Therefore taking the right-most IP address that is not unknown
-  // A Squid configuration directive can also set the value to "unknown" (http://www.squid-cache.org/Doc/config/forwarded_for/)
-  for (let i = 0; i < forwardedIps.length; i++) {
-    const ip = forwardedIps[i];
-    if (ip && isIP(ip)) {
-      return ip;
-    }
-  }
-
-  // If no value in the split list is an ip, return null
-  return null;
-}
-
-// -- Third -----------------------------
-
-export { ResponseCookies };
+export { ResponseCookies, RequestCookies } from '@edge-runtime/cookies';

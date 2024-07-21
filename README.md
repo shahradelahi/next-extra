@@ -1,14 +1,31 @@
-# next-extra
+<h1 align="center">
+<sup>Next Extra</sup>
+<br>
+<a href="https://github.com/shahradelahi/next-extra/actions/workflows/ci.yml" title="Build status"><img src="https://github.com/shahradelahi/next-extra/actions/workflows/ci.yml/badge.svg" alt="Build status"></a>
+<a href="https://www.npmjs.com/package/next-extra" title="NPM Version"><img src="https://img.shields.io/npm/v/next-extra" alt="npm"></a>
+<a href="https://www.npmjs.com/package/next-extra" title="Downloads"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/next-extra.svg"></a>
+<a href="https://opensource.org/licenses/MIT" title="License"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="MIT Licensed"></a>
+</h1>
 
-Enhance your Next.js projects with additional methods not found in the core package.
+_next-extra_ is a utility package that allows you to enhance your Next.js projects with additional methods not found in the core package.
 
-## Installation
+---
+
+- [Installation](#-installation)
+- [Usage](#-usage)
+  - [`next-extra/action`](#next-extraaction)
+  - [`next-extra/context`](#next-extracontext)
+  - [`next-extra/pathname`](#next-extrapathname)
+- [Contributing](#-contributing)
+- [License](#license)
+
+## 📦 Installation
 
 ```bash
 npm install next-extra
 ```
 
-## Usage
+## 📖 Usage
 
 ### `next-extra/action`
 
@@ -24,7 +41,7 @@ function clientIP(): string;
 ###### Example
 
 ```typescript jsx
-// -- actions.ts ------------------------------ //
+// -- actions.ts
 'use server';
 
 import { actionError, createAction } from 'next-extra/action';
@@ -35,8 +52,10 @@ export const hello = createAction(async (name: string) => {
   }
   return `Hello, ${name}!`;
 });
+```
 
-// -- page.tsx -------------------------------- //
+```typescript jsx
+// -- page.tsx
 import { hello } from './actions';
 
 export default async function Page() {
@@ -55,41 +74,53 @@ This module provides utilities for passing serializable data from the **server l
 ###### API
 
 ```typescript
-function PageContext<T = any>(props: PageContextProps<T>): JSX.Element;
-function usePageContext<T = any>(opts: UsePageContextOptions): T;
+function PageContext<T>(props: PageContextProps<T>): JSX.Element;
+function usePageContext<T>(): Readonly<T>;
+function useServerInsertedContext<T>(): Readonly<T | undefined>;
 ```
 
 ###### Example
 
 ```typescript jsx
-// -- layout.tsx ------------------------------ //
+// -- layout.tsx
 import { PageContext } from 'next-extra/context';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return <PageContext data={{ ts: Date.now() }}>{children}</PageContext>;
 }
+```
 
-// -- quotes/layout.tsx ----------------------- //
+```typescript jsx
+// -- quotes/layout.tsx
 import { PageContext } from 'next-extra/context';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   return <PageContext data={{ quote: 'Guillermo Rauch is a handsome dude!' }}>{children}</PageContext>;
 }
+```
 
-// -- quotes/page.tsx ------------------------- //
+```typescript jsx
+// -- quotes/page.tsx
 'use client';
 
+import { useServerInsertedContext, usePageContext } from 'next-extra/context';
+
 interface Context {
-  ts: number
-  quote: string
+  message: string;
+}
+
+interface InsertedContext extends Context {
+  ts: number;
 }
 
 export default function Page() {
-  const { ts, quote } = usePageContext<Context>();
+  const insertedCtx = useServerInsertedContext<InsertedContext>();
+  console.log(insertedCtx); // undefined in server or Object { ts: ..., message: "..." }
 
-  console.log('Timestamp: ', ts);
+  const ctx = usePageContext<Context>();
+  console.log(ctx); // Object { message: "..." }
 
-  return <h1>{quote}</h1>;
+  return <h3>Message: {ctx.message}</h3>;
 }
 ```
 
@@ -100,7 +131,6 @@ Access `pathname` and `searchParams` of the incoming request for server-side com
 ###### API
 
 ```typescript
-function invokeUrl(): URL;
 function pathname(): string;
 function searchParams(): ReadonlyURLSearchParams;
 ```
@@ -108,26 +138,29 @@ function searchParams(): ReadonlyURLSearchParams;
 ###### Example
 
 ```typescript
-import { invokeUrl, pathname, searchParams } from 'next-extra/pathname';
+import { pathname, searchParams } from 'next-extra/pathname';
 
 export default async function Layout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const url = invokeUrl(); // instance of URL; http://localhost:3000/hello?name=John
-  const path = pathname(); // /hello
+}: Readonly<{ children: React.ReactNode }>) {
+  // Assuming a request to "/hello?name=John"
+
+  const route = pathname(); // /hello
   const params = searchParams(); // ReadonlyURLSearchParams { 'name' => 'John' }
 
   return children;
 }
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Want to contribute? Awesome! To show your support is to star the project, or to raise issues on [GitHub](https://github.com/shahradelahi/next-extra).
 
 Thanks again for your support, it is much appreciated! 🙏
+
+## Relevant
+
+- [NextJs CSRF Protection](https://github.com/shahradelahi/next-csrf)
 
 ## License
 
