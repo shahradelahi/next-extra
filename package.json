@@ -54,7 +54,7 @@
     "/src/**/*",
     "!**/*.test.*"
   ],
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.7.0",
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
@@ -75,21 +75,24 @@
     "react": "18 || 19"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@sindresorhus/tsconfig": "^6.0.0",
-    "@types/chai": "^4.3.16",
+    "@types/chai": "^4.3.17",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^20.14.11",
-    "@types/react": "^18",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@types/node": "^22.4.1",
+    "@types/react": "^18.3.3",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
     "chai": "^5.1.1",
-    "eslint": "^8.57.0",
-    "mocha": "^10.7.0",
-    "next": "^14",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "mocha": "^10.7.3",
+    "next": "^14.2.5",
     "prettier": "^3.3.3",
-    "react": "^18",
-    "tsup": "8.1.2",
-    "tsx": "^4.16.2",
-    "typescript": "^5.5.3"
+    "react": "^18.3.1",
+    "tsup": "^8.2.4",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
   }
 }
