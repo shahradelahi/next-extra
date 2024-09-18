@@ -71,7 +71,7 @@
     "p-safe": "^1"
   },
   "peerDependencies": {
-    "next": "14 || 15",
+    "next": "14.2.10 14.2.10",
     "react": "18 || 19"
   },
   "devDependencies": {
