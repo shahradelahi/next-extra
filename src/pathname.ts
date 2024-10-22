@@ -15,7 +15,7 @@ async function getRequestOrigin() {
 
 async function getRequestURL(callingExpression: string): Promise<URL> {
   const origin = await getRequestOrigin();
-  const staticStore = getStaticGenerationStore();
+  const staticStore = getStaticGenerationStore(callingExpression);
 
   if (staticStore && 'urlPathname' in staticStore && !!staticStore.urlPathname) {
     return new URL(staticStore.urlPathname, origin);

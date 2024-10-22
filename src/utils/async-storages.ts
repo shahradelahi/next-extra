@@ -7,7 +7,7 @@ export function getExpectedRequestStore(callingExpression: string) {
     getExpectedRequestStore: any;
   }>('next/dist/server/app-render/work-unit-async-storage.external');
   if (workUnitStoreModule) {
-    return workUnitStoreModule.getExpectedRequestStore();
+    return workUnitStoreModule.getExpectedRequestStore(callingExpression);
   }
 
   const requestStoreModule = safeImport<{
@@ -26,11 +26,22 @@ export function getExpectedRequestStore(callingExpression: string) {
   );
 }
 
-export function getStaticGenerationStore() {
+export function getStaticGenerationStore(callingExpression: string) {
   const staticGenerationStoreModule = safeImport<{
-    getExpectedStaticGenerationStore(): any;
+    staticGenerationAsyncStorage: any;
   }>('next/dist/client/components/static-generation-async-storage.external');
-  if (staticGenerationStoreModule && staticGenerationStoreModule.getExpectedStaticGenerationStore) {
-    return staticGenerationStoreModule.getExpectedStaticGenerationStore();
+  if (staticGenerationStoreModule) {
+    const staticGenerationStore =
+      (fetch as any).__nextGetStaticStore?.() ??
+      staticGenerationStoreModule.staticGenerationAsyncStorage;
+
+    const store = staticGenerationStore.getStore();
+    if (!store) {
+      throw new Error(
+        `Invariant: \`${callingExpression}\` expects to have staticGenerationAsyncStorage, none available.`
+      );
+    }
+
+    return store;
   }
 }
