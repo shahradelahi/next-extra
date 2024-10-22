@@ -1,5 +1,4 @@
 <h1 align="center">
-<br>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="logo.svg" />
   <source media="(prefers-color-scheme: light)" srcset="logo-dark.svg" />
@@ -150,8 +149,8 @@ export default async function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   // Assuming a request to "/hello?name=John"
 
-  const route = pathname(); // /hello
-  const params = searchParams(); // ReadonlyURLSearchParams { 'name' => 'John' }
+  const route = await pathname(); // /hello
+  const params = await searchParams(); // ReadonlyURLSearchParams { 'name' => 'John' }
 
   return children;
 }
