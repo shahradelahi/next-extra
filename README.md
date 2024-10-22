@@ -1,5 +1,9 @@
 <h1 align="center">
-<sup>Next Extra</sup>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="logo.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="logo-dark.svg" />
+  <img alt="Next.JS EXTRA" src="logo.svg" />
+</picture>
 <br>
 <a href="https://github.com/shahradelahi/next-extra/actions/workflows/ci.yml" title="Build status"><img src="https://github.com/shahradelahi/next-extra/actions/workflows/ci.yml/badge.svg" alt="Build status"></a>
 <a href="https://www.npmjs.com/package/next-extra" title="NPM Version"><img src="https://img.shields.io/npm/v/next-extra" alt="npm"></a>
@@ -35,7 +39,7 @@ npm install next-extra
 function createAction(fn: Function): ActionFunc;
 function actionError(code: string, message: string): never;
 function cookies(): ResponseCookies;
-function clientIP(): string;
+function clientIP(): Promise<string | null>;
 ```
 
 ###### Example
@@ -131,8 +135,8 @@ Access `pathname` and `searchParams` of the incoming request for server-side com
 ###### API
 
 ```typescript
-function pathname(): string;
-function searchParams(): ReadonlyURLSearchParams;
+function pathname(): Promise<string>;
+function searchParams(): Promise<ReadonlyURLSearchParams>;
 ```
 
 ###### Example
@@ -145,8 +149,8 @@ export default async function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   // Assuming a request to "/hello?name=John"
 
-  const route = pathname(); // /hello
-  const params = searchParams(); // ReadonlyURLSearchParams { 'name' => 'John' }
+  const route = await pathname(); // /hello
+  const params = await searchParams(); // ReadonlyURLSearchParams { 'name' => 'John' }
 
   return children;
 }
