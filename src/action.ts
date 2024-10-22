@@ -143,25 +143,25 @@ export function actionError(code: string, message: string): never {
  *
  * @example
  * // Reading cookies in a Server Component
- * const requestCookies = await cookies();
+ * const requestCookies = cookies();
  * console.log(requestCookies.get('sessionId'));
  *
  * @example
  * // Writing cookies in a Server Action
- * export async function myAction() {
- *   const responseCookies = await cookies();
+ * export function myAction() {
+ *   const responseCookies = cookies();
  *   responseCookies.set('sessionId', 'abc123', { httpOnly: true });
  * }
  *
  * @example
  * // Modifying cookies in a Route Handler
  * export default async function handler(req, res) {
- *   const responseCookies = await cookies();
+ *   const responseCookies = cookies();
  *   responseCookies.delete('sessionId');
  *   res.end('Cookie deleted');
  * }
  */
-export async function cookies(): Promise<ResponseCookies> {
+export function cookies(): ResponseCookies {
   const expression = 'cookies';
   const store = getExpectedRequestStore(expression);
 
