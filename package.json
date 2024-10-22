@@ -56,6 +56,7 @@
   ],
   "packageManager": "pnpm@9.7.0",
   "scripts": {
+    "dev": "tsup --watch",
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "lint": "pnpm typecheck && eslint .",
@@ -88,7 +89,7 @@
     "eslint": "^9.9.0",
     "globals": "^15.9.0",
     "mocha": "^10.7.3",
-    "next": "^14.2.5",
+    "next": "^15.0.0",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "tsup": "^8.2.4",

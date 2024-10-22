@@ -1,28 +1,28 @@
 import { headers } from 'next/headers';
 
-import { getExpectedRequestStore, getExpectedStaticGenerationStore } from '@/utils/async-storages';
+import { getExpectedRequestStore, getStaticGenerationStore } from '@/utils/async-storages';
 import { ReadonlyURLSearchParams } from '@/utils/search-params';
 
 // -- Internal ------------------------
 
-function getRequestOrigin() {
-  const requestHeaders = headers();
+async function getRequestOrigin() {
+  const requestHeaders = await headers();
   const protocol = requestHeaders.get('x-forwarded-proto') || 'http';
   const host =
     requestHeaders.get('x-forwarded-host') || requestHeaders.get('host') || 'localhost:3000';
   return `${protocol}://${host}`;
 }
 
-function getRequestURL(callingExpression: string): URL {
-  const staticStore = getExpectedStaticGenerationStore(callingExpression);
-  const origin = getRequestOrigin();
+async function getRequestURL(callingExpression: string): Promise<URL> {
+  const origin = await getRequestOrigin();
+  const staticStore = getStaticGenerationStore();
 
-  if ('urlPathname' in staticStore && !!staticStore.urlPathname) {
+  if (staticStore && 'urlPathname' in staticStore && !!staticStore.urlPathname) {
     return new URL(staticStore.urlPathname, origin);
   }
 
   const requestStore = getExpectedRequestStore(callingExpression);
-  if ('url' in requestStore && !!requestStore.url) {
+  if (requestStore && 'url' in requestStore && !!requestStore.url) {
     return new URL(`${requestStore.url.pathname}${requestStore.url.search}`, origin);
   }
 
@@ -35,7 +35,7 @@ function getRequestURL(callingExpression: string): URL {
 // -- Exported ------------------------
 
 /** @deprecated This method will be removed in the next major release. */
-export function invokeUrl(): URL {
+export async function invokeUrl(): Promise<URL> {
   return getRequestURL('invokeUrl');
 }
 
@@ -48,14 +48,14 @@ export function invokeUrl(): URL {
  * import { pathname } from 'next-extra/pathname'
  *
  * export default async function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
- *  const route = pathname() // returns "/dashboard" on /dashboard?foo=bar
+ *  const route = await pathname() // returns "/dashboard" on /dashboard?foo=bar
  *  // ...
  * }
  * ```
  */
-export function pathname(): string {
+export async function pathname(): Promise<string> {
   const expression = 'pathname';
-  const url = getRequestURL(expression);
+  const url = await getRequestURL(expression);
 
   return url.pathname;
 }
@@ -71,15 +71,15 @@ export function pathname(): string {
  * import { searchParams } from 'next-extra/pathname'
  *
  * export default async function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
- *  const params = searchParams()
+ *  const params = await searchParams()
  *  params.get('foo') // returns 'bar' when ?foo=bar
  *  // ...
  * }
  * ```
  */
-export function searchParams(): ReadonlyURLSearchParams {
+export async function searchParams(): Promise<ReadonlyURLSearchParams> {
   const expression = 'searchParams';
-  const url = getRequestURL(expression);
+  const url = await getRequestURL(expression);
 
   return new ReadonlyURLSearchParams(url.searchParams);
 }

@@ -1,28 +1,36 @@
-import { requestAsyncStorage } from 'next/dist/client/components/request-async-storage.external';
-import {
-  staticGenerationAsyncStorage as _staticGenerationAsyncStorage,
-  type StaticGenerationAsyncStorage,
-} from 'next/dist/client/components/static-generation-async-storage.external';
+import type { AsyncLocalStorage } from 'node:async_hooks';
 
-export function getExpectedStaticGenerationStore(callingExpression: string) {
-  const staticGenerationStore =
-    ((fetch as any).__nextGetStaticStore?.() as StaticGenerationAsyncStorage | undefined) ??
-    _staticGenerationAsyncStorage;
+import { safeImport } from '@/utils/dynamic-import';
 
-  const store = staticGenerationStore.getStore();
-  if (!store) {
+export function getExpectedRequestStore(callingExpression: string) {
+  const workUnitStoreModule = safeImport<{
+    getExpectedRequestStore: any;
+  }>('next/dist/server/app-render/work-unit-async-storage.external');
+  if (workUnitStoreModule) {
+    return workUnitStoreModule.getExpectedRequestStore();
+  }
+
+  const requestStoreModule = safeImport<{
+    requestAsyncStorage: AsyncLocalStorage<any>;
+  }>('next/dist/client/components/request-async-storage.external');
+  if (requestStoreModule) {
+    const store = requestStoreModule.requestAsyncStorage.getStore();
+    if (store) return store;
     throw new Error(
-      `Invariant: \`${callingExpression}\` expects to have staticGenerationAsyncStorage, none available.`
+      `\`${callingExpression}\` was called outside a request scope. Read more: https://nextjs.org/docs/messages/next-dynamic-api-wrong-context`
     );
   }
 
-  return store;
+  throw new Error(
+    `Invariant: \`${callingExpression}\` expects to have requestAsyncStorage, none available.`
+  );
 }
 
-export function getExpectedRequestStore(callingExpression: string) {
-  const store = requestAsyncStorage.getStore();
-  if (store) return store;
-  throw new Error(
-    `\`${callingExpression}\` was called outside a request scope. Read more: https://nextjs.org/docs/messages/next-dynamic-api-wrong-context`
-  );
+export function getStaticGenerationStore() {
+  const staticGenerationStoreModule = safeImport<{
+    getExpectedStaticGenerationStore(): any;
+  }>('next/dist/client/components/static-generation-async-storage.external');
+  if (staticGenerationStoreModule && staticGenerationStoreModule.getExpectedStaticGenerationStore) {
+    return staticGenerationStoreModule.getExpectedStaticGenerationStore();
+  }
 }
