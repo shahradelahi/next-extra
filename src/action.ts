@@ -143,25 +143,25 @@ export function actionError(code: string, message: string): never {
  *
  * @example
  * // Reading cookies in a Server Component
- * const requestCookies = cookies();
+ * const requestCookies = await cookies();
  * console.log(requestCookies.get('sessionId'));
  *
  * @example
  * // Writing cookies in a Server Action
  * export async function myAction() {
- *   const responseCookies = cookies();
+ *   const responseCookies = await cookies();
  *   responseCookies.set('sessionId', 'abc123', { httpOnly: true });
  * }
  *
  * @example
  * // Modifying cookies in a Route Handler
- * export default function handler(req, res) {
- *   const responseCookies = cookies();
+ * export default async function handler(req, res) {
+ *   const responseCookies = await cookies();
  *   responseCookies.delete('sessionId');
  *   res.end('Cookie deleted');
  * }
  */
-export function cookies(): ResponseCookies {
+export async function cookies(): Promise<ResponseCookies> {
   const expression = 'cookies';
   const store = getExpectedRequestStore(expression);
 
@@ -175,11 +175,10 @@ export function cookies(): ResponseCookies {
  * It prioritizes the 'x-forwarded-for' header, which may contain multiple IP addresses, and extracts the first one.
  * If no valid IP is found, it throws an error.
  *
- * @returns {string} The client's IP address.
- * @throws {Error} If the client's IP address cannot be determined from the headers.
+ * @returns {string|null} The client's IP address.
  */
-export function clientIP() {
-  const hs = headers();
+export async function clientIP(): Promise<string | null> {
+  const hs = await headers();
 
   // X-Forwarded-For (Header may return multiple IP addresses in the format: "client IP, proxy 1 IP, proxy 2 IP", so we take the first one.)
   if (hs.has('x-forwarded-for')) {
@@ -233,7 +232,7 @@ export function clientIP() {
     }
   }
 
-  throw new Error('Unable to determine client IP address from request headers');
+  return null;
 }
 
 // -- Third ---------------------------
