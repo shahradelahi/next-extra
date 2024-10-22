@@ -51,7 +51,6 @@
   },
   "files": [
     "/dist/**/*",
-    "/src/**/*",
     "!**/*.test.*"
   ],
   "packageManager": "pnpm@9.7.0",
