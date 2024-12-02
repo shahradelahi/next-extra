@@ -53,7 +53,7 @@
     "/dist/**/*",
     "!**/*.test.*"
   ],
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@9.14.4",
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
@@ -66,33 +66,33 @@
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
-    "@edge-runtime/cookies": "^5",
-    "deepmerge": "^4",
-    "p-safe": "^1"
+    "@edge-runtime/cookies": "^5.0.2",
+    "deepmerge": "^4.3.1",
+    "p-safe": "^1.0.0"
   },
   "peerDependencies": {
     "next": "14 || 15",
     "react": "18 || 19"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.1.0",
-    "@eslint/js": "^9.13.0",
-    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
-    "@sindresorhus/tsconfig": "^6.0.0",
-    "@types/chai": "^5.0.0",
-    "@types/mocha": "^10.0.9",
-    "@types/node": "^22.7.8",
-    "@types/react": "^18.3.11",
-    "@typescript-eslint/eslint-plugin": "^8.11.0",
-    "chai": "^5.1.1",
-    "eslint": "^9.13.0",
-    "globals": "^15.11.0",
-    "mocha": "^10.7.3",
-    "next": "^15.0.0",
-    "prettier": "^3.3.3",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+    "@sindresorhus/tsconfig": "^7.0.0",
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "chai": "^5.1.2",
+    "eslint": "^9.16.0",
+    "globals": "^15.13.0",
+    "mocha": "^10.8.2",
+    "next": "^15.0.3",
+    "prettier": "^3.4.1",
     "react": "^18.3.1",
-    "tsup": "^8.3.0",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.3"
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
   }
 }
