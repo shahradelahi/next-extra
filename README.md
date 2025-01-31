@@ -170,11 +170,10 @@ Thanks again for your support, it is much appreciated! 🙏
 
 ## Notice of Non-Affiliation and Disclaimer
 
-This project, [`next-extra`](https://github.com/shahradelahi/next-extra), is an independent, community-driven project and is not affiliated with, endorsed by, or sponsored by Vercel, the creators of Next.js.  Next.js is a registered trademark of Vercel, Inc.
+This project, [`next-extra`](https://github.com/shahradelahi/next-extra), is an independent, community-driven project and is not affiliated with, endorsed by, or sponsored by Vercel, the creators of Next.js. Next.js is a registered trademark of Vercel, Inc.
 
-This project utilizes the Next.js framework but is not a part of the official Next.js distribution.  Any features, functionalities, or integrations provided by [`next-extra`](https://github.com/shahradelahi/next-extra) are solely the responsibility of the project maintainers and contributors.  Vercel and the Next.js team hold no responsibility for the content, quality, or support of this project.
+This project utilizes the Next.js framework but is not a part of the official Next.js distribution. Any features, functionalities, or integrations provided by [`next-extra`](https://github.com/shahradelahi/next-extra) are solely the responsibility of the project maintainers and contributors. Vercel and the Next.js team hold no responsibility for the content, quality, or support of this project.
 
-While we strive to ensure compatibility and proper functionality with Next.js, there is no guarantee of seamless integration or continued support in future Next.js releases.  Use of [`next-extra`](https://github.com/shahradelahi/next-extra) is at your own discretion and risk.  We recommend thoroughly testing this project in your environment before deploying it to production.
+While we strive to ensure compatibility and proper functionality with Next.js, there is no guarantee of seamless integration or continued support in future Next.js releases. Use of [`next-extra`](https://github.com/shahradelahi/next-extra) is at your own discretion and risk. We recommend thoroughly testing this project in your environment before deploying it to production.
 
-All trademarks, service marks, and registered trademarks are the property of their respective owners.  The use of any third-party names or trademarks in this project is for identification purposes only and does not imply any affiliation or endorsement.
-
+All trademarks, service marks, and registered trademarks are the property of their respective owners. The use of any third-party names or trademarks in this project is for identification purposes only and does not imply any affiliation or endorsement.
