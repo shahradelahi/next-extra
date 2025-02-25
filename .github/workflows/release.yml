@@ -1,4 +1,4 @@
-name: Publish Release
+name: Release Package
 
 on:
   push:
@@ -38,12 +38,11 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install --frozen-lockfile
-      - run: npm install -g npm@latest
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
