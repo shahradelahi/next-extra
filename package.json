@@ -53,7 +53,7 @@
     "/dist/**/*",
     "!**/*.test.*"
   ],
-  "packageManager": "pnpm@9.14.4",
+  "packageManager": "pnpm@10.5.0",
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
