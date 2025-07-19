@@ -18,12 +18,12 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
     devDependencies:
-      '@ianvs/prettier-plugin-sort-imports':
-        specifier: ^4.5.1
-        version: 4.5.1(prettier@3.6.2)
       '@shahrad/eslint-config':
         specifier: ^1.0.0
         version: 1.0.0(typescript@5.8.3)
+      '@shahrad/prettier-config':
+        specifier: ^1.2.2
+        version: 1.2.2(@ianvs/prettier-plugin-sort-imports@4.5.1(prettier@3.6.2))(prettier-plugin-packagejson@2.5.18(prettier@3.6.2))(prettier-plugin-sh@0.15.0(prettier@3.6.2))(prettier@3.6.2)
       '@shahrad/tsconfig':
         specifier: ^1.1.0
         version: 1.1.0
@@ -543,6 +543,10 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
+  '@pkgr/core@0.2.7':
+    resolution: {integrity: sha512-YLT9Zo3oNPJoBjBc4q8G2mjU4tqIbf5CEOORbUUr48dCD9q3umJ3IPlVqOqDakPfd2HuwccBaqlGhN4Gmr5OWg==}
+    engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
   '@rollup/rollup-android-arm-eabi@4.34.9':
     resolution: {integrity: sha512-qZdlImWXur0CFakn2BJ2znJOdqYZKiedEPEVNTBrpfPjc/YuTGcaYZcdmNFTkUj3DU0ZM/AElcM8Ybww3xVLzA==}
     cpu: [arm]
@@ -640,6 +644,14 @@ packages:
 
   '@shahrad/eslint-config@1.0.0':
     resolution: {integrity: sha512-J/RJBYyva4REnQr9C/pvT/9ydPX8zKwoV1ltzmKicX5IQKqN5S/1nrFmkZvSg8MoaXM2WM4AsNZVklTxDeW0+g==}
+
+  '@shahrad/prettier-config@1.2.2':
+    resolution: {integrity: sha512-D6yRqGjD9mhdC5cWQkdoatybNmp6eZJZQ1IerFaANQL1pgtNyEasE2yFy3JdDxJRbHcL2GeaI/03tEPchU+Ddw==}
+    peerDependencies:
+      '@ianvs/prettier-plugin-sort-imports': ^4.4
+      prettier: '>=3.0.0'
+      prettier-plugin-packagejson: ^2.5
+      prettier-plugin-sh: ^0.15
 
   '@shahrad/tsconfig@1.1.0':
     resolution: {integrity: sha512-WcziTJWK7DC49kbEKPwdZ/Mnhu3H6ZehpBg4UGbyDwU2Ze/QvSjZq1Nx6Vb2Pfgwjas1CHWkIA2d3GiW35fxsw==}
@@ -900,9 +912,17 @@ packages:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
 
+  detect-indent@7.0.1:
+    resolution: {integrity: sha512-Mc7QhQ8s+cLrnUfU/Ji94vG/r8M26m8f++vyres4ZoojaRDpZ1eSIh/EpzLNwlWuvzSZ3UbDFspjFvTDXe6e/g==}
+    engines: {node: '>=12.20'}
+
   detect-libc@2.0.4:
     resolution: {integrity: sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA==}
     engines: {node: '>=8'}
+
+  detect-newline@4.0.1:
+    resolution: {integrity: sha512-qE3Veg1YXzGHQhlA6jzebZN2qVf6NX+A7m7qlhCGG30dJixrAQhYOsJjsnBjJkCSmuOPpCk30145fr8FV0bzog==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
@@ -1045,6 +1065,9 @@ packages:
   get-tsconfig@4.8.1:
     resolution: {integrity: sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==}
 
+  git-hooks-list@4.1.1:
+    resolution: {integrity: sha512-cmP497iLq54AZnv4YRAEMnEyQ1eIn4tGKbmswqwmFV4GBnAqE8NLtWxxdXa++AalfgL5EBH4IxTPyquEuGY/jA==}
+
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -1130,6 +1153,10 @@ packages:
   is-plain-obj@2.1.0:
     resolution: {integrity: sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==}
     engines: {node: '>=8'}
+
+  is-plain-obj@4.1.0:
+    resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
+    engines: {node: '>=12'}
 
   is-unicode-supported@0.1.0:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
@@ -1244,6 +1271,10 @@ packages:
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+
+  mvdan-sh@0.10.1:
+    resolution: {integrity: sha512-kMbrH0EObaKmK3nVRKUIIya1dpASHIEusM13S4V1ViHFuxuNxCo+arxoa6j/dbV22YBGjl7UKJm9QQKJ2Crzhg==}
+    deprecated: See https://github.com/mvdan/sh/issues/1145
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
@@ -1373,6 +1404,20 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
+  prettier-plugin-packagejson@2.5.18:
+    resolution: {integrity: sha512-NKznPGcGrcj4NPGxnh+w78JXPyfB6I4RQSCM0v+CAXwpDG7OEpJQ5zMyfC5NBgKH1k7Skwcj5ak5by2mrHvC5g==}
+    peerDependencies:
+      prettier: '>= 1.16.0'
+    peerDependenciesMeta:
+      prettier:
+        optional: true
+
+  prettier-plugin-sh@0.15.0:
+    resolution: {integrity: sha512-U0PikJr/yr2bzzARl43qI0mApBj0C1xdAfA04AZa6LnvIKawXHhuy2fFo6LNA7weRzGlAiNbaEFfKMFo0nZr/A==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      prettier: ^3.0.3
+
   prettier@3.6.2:
     resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
@@ -1446,6 +1491,10 @@ packages:
   serialize-javascript@6.0.2:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
 
+  sh-syntax@0.4.2:
+    resolution: {integrity: sha512-/l2UZ5fhGZLVZa16XQM9/Vq/hezGGbdHeVEA01uWjOL1+7Ek/gt6FquW0iKKws4a9AYPYvlz6RyVvjh3JxOteg==}
+    engines: {node: '>=16.0.0'}
+
   sharp@0.34.3:
     resolution: {integrity: sha512-eX2IQ6nFohW4DbvHIOLRB3MHFpYqaqvXd3Tp5e/T/dSH83fxaNJQRvDMhASmkNTsNTVF2/OOopzRCt7xokgPfg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
@@ -1464,6 +1513,14 @@ packages:
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
+
+  sort-object-keys@1.1.3:
+    resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
+
+  sort-package-json@3.4.0:
+    resolution: {integrity: sha512-97oFRRMM2/Js4oEA9LJhjyMlde+2ewpZQf53pgue27UkbEXfHJnDzHlUxQ/DWUkzqmp7DFwJp8D+wi/TYeQhpA==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -1518,6 +1575,10 @@ packages:
   supports-color@8.1.1:
     resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
     engines: {node: '>=10'}
+
+  synckit@0.11.8:
+    resolution: {integrity: sha512-+XZ+r1XGIJGeQk3VvXhT6xx/VpbHsRzsTkGgF6E5RX9TTXD0118l87puaEBZ566FhqblC6U0d4XnubznJDm30A==}
+    engines: {node: ^14.18.0 || >=16.0.0}
 
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
@@ -2007,6 +2068,8 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
+  '@pkgr/core@0.2.7': {}
+
   '@rollup/rollup-android-arm-eabi@4.34.9':
     optional: true
 
@@ -2073,6 +2136,13 @@ snapshots:
       - jiti
       - supports-color
       - typescript
+
+  '@shahrad/prettier-config@1.2.2(@ianvs/prettier-plugin-sort-imports@4.5.1(prettier@3.6.2))(prettier-plugin-packagejson@2.5.18(prettier@3.6.2))(prettier-plugin-sh@0.15.0(prettier@3.6.2))(prettier@3.6.2)':
+    dependencies:
+      '@ianvs/prettier-plugin-sort-imports': 4.5.1(prettier@3.6.2)
+      prettier: 3.6.2
+      prettier-plugin-packagejson: 2.5.18(prettier@3.6.2)
+      prettier-plugin-sh: 0.15.0(prettier@3.6.2)
 
   '@shahrad/tsconfig@1.1.0': {}
 
@@ -2339,8 +2409,12 @@ snapshots:
 
   deepmerge@4.3.1: {}
 
+  detect-indent@7.0.1: {}
+
   detect-libc@2.0.4:
     optional: true
+
+  detect-newline@4.0.1: {}
 
   diff@5.2.0: {}
 
@@ -2517,6 +2591,8 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
+  git-hooks-list@4.1.1: {}
+
   glob-parent@5.1.2:
     dependencies:
       is-glob: 4.0.3
@@ -2588,6 +2664,8 @@ snapshots:
   is-number@7.0.0: {}
 
   is-plain-obj@2.1.0: {}
+
+  is-plain-obj@4.1.0: {}
 
   is-unicode-supported@0.1.0: {}
 
@@ -2708,6 +2786,8 @@ snapshots:
 
   ms@2.1.3: {}
 
+  mvdan-sh@0.10.1: {}
+
   mz@2.7.0:
     dependencies:
       any-promise: 1.3.0
@@ -2816,6 +2896,19 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
+  prettier-plugin-packagejson@2.5.18(prettier@3.6.2):
+    dependencies:
+      sort-package-json: 3.4.0
+      synckit: 0.11.8
+    optionalDependencies:
+      prettier: 3.6.2
+
+  prettier-plugin-sh@0.15.0(prettier@3.6.2):
+    dependencies:
+      mvdan-sh: 0.10.1
+      prettier: 3.6.2
+      sh-syntax: 0.4.2
+
   prettier@3.6.2: {}
 
   punycode@2.3.1: {}
@@ -2893,6 +2986,10 @@ snapshots:
     dependencies:
       randombytes: 2.1.0
 
+  sh-syntax@0.4.2:
+    dependencies:
+      tslib: 2.8.1
+
   sharp@0.34.3:
     dependencies:
       color: 4.2.3
@@ -2935,6 +3032,18 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
     optional: true
+
+  sort-object-keys@1.1.3: {}
+
+  sort-package-json@3.4.0:
+    dependencies:
+      detect-indent: 7.0.1
+      detect-newline: 4.0.1
+      git-hooks-list: 4.1.1
+      is-plain-obj: 4.1.0
+      semver: 7.7.2
+      sort-object-keys: 1.1.3
+      tinyglobby: 0.2.14
 
   source-map-js@1.2.1: {}
 
@@ -2986,6 +3095,10 @@ snapshots:
   supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
+
+  synckit@0.11.8:
+    dependencies:
+      '@pkgr/core': 0.2.7
 
   thenify-all@1.6.0:
     dependencies:
