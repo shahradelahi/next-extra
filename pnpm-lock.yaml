@@ -24,9 +24,9 @@ importers:
       '@shahrad/eslint-config':
         specifier: ^1.0.0
         version: 1.0.0(typescript@5.8.3)
-      '@sindresorhus/tsconfig':
-        specifier: ^7.0.0
-        version: 7.0.0
+      '@shahrad/tsconfig':
+        specifier: ^1.1.0
+        version: 1.1.0
       '@types/chai':
         specifier: ^5.2.2
         version: 5.2.2
@@ -641,8 +641,8 @@ packages:
   '@shahrad/eslint-config@1.0.0':
     resolution: {integrity: sha512-J/RJBYyva4REnQr9C/pvT/9ydPX8zKwoV1ltzmKicX5IQKqN5S/1nrFmkZvSg8MoaXM2WM4AsNZVklTxDeW0+g==}
 
-  '@sindresorhus/tsconfig@7.0.0':
-    resolution: {integrity: sha512-i5K04hLAP44Af16zmDjG07E1NHuDgCM07SJAT4gY0LZSRrWYzwt4qkLem6TIbIVh0k51RkN2bF+lP+lM5eC9fw==}
+  '@shahrad/tsconfig@1.1.0':
+    resolution: {integrity: sha512-WcziTJWK7DC49kbEKPwdZ/Mnhu3H6ZehpBg4UGbyDwU2Ze/QvSjZq1Nx6Vb2Pfgwjas1CHWkIA2d3GiW35fxsw==}
     engines: {node: '>=18'}
 
   '@swc/helpers@0.5.15':
@@ -2074,7 +2074,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@sindresorhus/tsconfig@7.0.0': {}
+  '@shahrad/tsconfig@1.1.0': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
