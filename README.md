@@ -19,7 +19,6 @@ _next-extra_ is a utility package that allows you to enhance your Next.js projec
 - [Contributing](#-contributing)
 - [Relevant](#relevant)
 - [License](#license)
-- [Notice of Non-Affiliation and Disclaimer](#notice-of-non-affiliation-and-disclaimer)
 
 ## 📦 Installation
 
@@ -162,18 +161,17 @@ Thanks again for your support, it is much appreciated! 🙏
 
 ## Relevant
 
-- [NextJs CSRF Protection](https://github.com/shahradelahi/next-csrf)
+- [next-csrf](https://github.com/shahradelahi/next-csrf): CSRF protection middleware for Next.Js
+- [next-zod-route](https://github.com/Melvynx/next-zod-route): Zod-safe routes for Next.Js App Directory
 
 ## License
 
-[MIT](/LICENSE) © [Shahrad Elahi](https://github.com/shahradelahi)
+[MIT](/LICENSE) © [Shahrad Elahi](https://github.com/shahradelahi) and [contributors](https://github.com/shahradelahi/next-extra/graphs/contributors).
 
 ## Notice of Non-Affiliation and Disclaimer
 
-This project, [`next-extra`](https://github.com/shahradelahi/next-extra), is an independent, community-driven project and is not affiliated with, endorsed by, or sponsored by Vercel, the creators of Next.js. Next.js is a registered trademark of Vercel, Inc.
+[`next-extra`](https://github.com/shahradelahi/next-extra), is an independent project created by the community and is not affiliated with, endorsed, or sponsored by Vercel, the creators of Next.js. Next.js is a registered trademark of Vercel, Inc.
 
-This project utilizes the Next.js framework but is not a part of the official Next.js distribution. Any features, functionalities, or integrations provided by [`next-extra`](https://github.com/shahradelahi/next-extra) are solely the responsibility of the project maintainers and contributors. Vercel and the Next.js team hold no responsibility for the content, quality, or support of this project.
+This project utilizes the Next.js framework but is not a part of the official Next.js distribution. Any features, functionalities, or integrations provided by [`next-extra`](https://github.com/shahradelahi/next-extra) are solely the responsibility of the project maintainers and contributors.
 
-While we strive to ensure compatibility and proper functionality with Next.js, there is no guarantee of seamless integration or continued support in future Next.js releases. Use of [`next-extra`](https://github.com/shahradelahi/next-extra) is at your own discretion and risk. We recommend thoroughly testing this project in your environment before deploying it to production.
-
-All trademarks, service marks, and registered trademarks are the property of their respective owners. The use of any third-party names or trademarks in this project is for identification purposes only and does not imply any affiliation or endorsement.
+While we strive to ensure compatibility and proper functionality with Next.js, breaking changes can occur. We actively maintain this package for the latest versions of Next.js, which may require dropping support for older versions over time. Use of [`next-extra`](https://github.com/shahradelahi/next-extra) is at your own discretion and risk. We recommend thoroughly testing this project in your environment before deploying it to production.
