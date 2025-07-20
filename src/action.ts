@@ -1,5 +1,5 @@
 import { ResponseCookies } from '@edge-runtime/cookies';
-import { headers } from 'next/headers';
+import { headers } from 'next/headers.js';
 import type { SafeReturn } from 'p-safe';
 
 import { getExpectedRequestStore } from '@/utils/async-storages';

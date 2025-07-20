@@ -1,4 +1,4 @@
-import { headers } from 'next/headers';
+import { headers } from 'next/headers.js';
 
 import { getExpectedRequestStore, getStaticGenerationStore } from '@/utils/async-storages';
 import { ReadonlyURLSearchParams } from '@/utils/search-params';
