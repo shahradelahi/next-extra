@@ -3,11 +3,20 @@ import type { AsyncLocalStorage } from 'node:async_hooks';
 import { safeImport } from '@/utils/dynamic-import';
 
 export function getExpectedRequestStore(callingExpression: string) {
-  const workUnitStoreModule = safeImport<{
-    getExpectedRequestStore: any;
-  }>('next/dist/server/app-render/work-unit-async-storage.external');
+  const workUnitStoreModule = safeImport<
+    | {
+        getExpectedRequestStore: any;
+      }
+    | {
+        workUnitAsyncStorage: AsyncLocalStorage<any>;
+      }
+  >('next/dist/server/app-render/work-unit-async-storage.external');
   if (workUnitStoreModule) {
-    return workUnitStoreModule.getExpectedRequestStore(callingExpression);
+    if ('getExpectedRequestStore' in workUnitStoreModule) {
+      return workUnitStoreModule.getExpectedRequestStore();
+    }
+
+    return workUnitStoreModule.workUnitAsyncStorage.getStore();
   }
 
   const requestStoreModule = safeImport<{
