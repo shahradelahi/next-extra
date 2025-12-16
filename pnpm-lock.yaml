@@ -11,6 +11,9 @@ importers:
       '@edge-runtime/cookies':
         specifier: ^5.0.2
         version: 5.0.2
+      '@se-oss/ip-address':
+        specifier: ^1.1.0
+        version: 1.1.0
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
@@ -641,6 +644,9 @@ packages:
     resolution: {integrity: sha512-AyleYRPU7+rgkMWbEh71fQlrzRfeP6SyMnRf9XX4fCdDPAJumdSBqYEcWPMzVQ4ScAl7E4oFfK0GUVn77xSwbw==}
     cpu: [x64]
     os: [win32]
+
+  '@se-oss/ip-address@1.1.0':
+    resolution: {integrity: sha512-nyADzEzJy8QjMk5o3fKe3AcNIKsTiOxdVNthGIwPYDVgo7c/tCV6AjoBulDTzZxSuybkvT357jl/OPj1Hylr2Q==}
 
   '@shahrad/eslint-config@1.0.0':
     resolution: {integrity: sha512-J/RJBYyva4REnQr9C/pvT/9ydPX8zKwoV1ltzmKicX5IQKqN5S/1nrFmkZvSg8MoaXM2WM4AsNZVklTxDeW0+g==}
@@ -2126,6 +2132,8 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.34.9':
     optional: true
+
+  '@se-oss/ip-address@1.1.0': {}
 
   '@shahrad/eslint-config@1.0.0(typescript@5.8.3)':
     dependencies:

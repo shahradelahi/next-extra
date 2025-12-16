@@ -1,10 +1,10 @@
 import { ResponseCookies } from '@edge-runtime/cookies';
+import { isValidIP } from '@se-oss/ip-address';
 import { headers } from 'next/headers.js';
 import type { SafeReturn } from 'p-safe';
 
 import { getExpectedRequestStore } from '@/utils/async-storages';
 import { ActionError, type ActionErrorPlain } from '@/utils/errors';
-import { isIP } from '@/utils/ip';
 
 // -- Types ---------------------------
 
@@ -99,7 +99,7 @@ function getClientIpFromXForwardedFor(value: any) {
   // A Squid configuration directive can also set the value to "unknown" (http://www.squid-cache.org/Doc/config/forwarded_for/)
   for (let i = 0; i < forwardedIps.length; i++) {
     const ip = forwardedIps[i];
-    if (ip && isIP(ip)) {
+    if (ip && isValidIP(ip)) {
       return ip;
     }
   }
@@ -226,7 +226,7 @@ export async function clientIP(): Promise<string | null> {
   for (const headerKey of headerKeys) {
     if (hs.has(headerKey)) {
       const ip = hs.get(headerKey);
-      if (ip && isIP(ip)) {
+      if (ip && isValidIP(ip)) {
         return ip;
       }
     }
