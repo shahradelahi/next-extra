@@ -11,12 +11,12 @@ importers:
       '@edge-runtime/cookies':
         specifier: ^5.0.2
         version: 5.0.2
+      '@se-oss/deep-merge':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@se-oss/ip-address':
         specifier: ^1.1.0
         version: 1.1.0
-      deepmerge:
-        specifier: ^4.3.1
-        version: 4.3.1
       p-safe:
         specifier: ^1.0.0
         version: 1.0.0
@@ -645,8 +645,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@se-oss/deep-merge@1.0.0':
+    resolution: {integrity: sha512-FmWiSzYWMQASJoeGo/z5QpXYmNODerXD0yHO0PRL+I1mSkOXZDGrMgDOUqqoi0gd7hq5g1YE4aPY16pJ5xvtYA==}
+
   '@se-oss/ip-address@1.1.0':
     resolution: {integrity: sha512-nyADzEzJy8QjMk5o3fKe3AcNIKsTiOxdVNthGIwPYDVgo7c/tCV6AjoBulDTzZxSuybkvT357jl/OPj1Hylr2Q==}
+
+  '@se-oss/object@1.0.0':
+    resolution: {integrity: sha512-3IrKoKg623ibHO8uvzdcLkpxldASD0OJW5ijRbwg3CpavekuqxmThVMvOtzdXHtqLgCG8y1HZmqlTHABCdHQZw==}
 
   '@shahrad/eslint-config@1.0.0':
     resolution: {integrity: sha512-J/RJBYyva4REnQr9C/pvT/9ydPX8zKwoV1ltzmKicX5IQKqN5S/1nrFmkZvSg8MoaXM2WM4AsNZVklTxDeW0+g==}
@@ -913,10 +919,6 @@ packages:
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
-
-  deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
-    engines: {node: '>=0.10.0'}
 
   detect-indent@7.0.1:
     resolution: {integrity: sha512-Mc7QhQ8s+cLrnUfU/Ji94vG/r8M26m8f++vyres4ZoojaRDpZ1eSIh/EpzLNwlWuvzSZ3UbDFspjFvTDXe6e/g==}
@@ -2133,7 +2135,13 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.34.9':
     optional: true
 
+  '@se-oss/deep-merge@1.0.0':
+    dependencies:
+      '@se-oss/object': 1.0.0
+
   '@se-oss/ip-address@1.1.0': {}
+
+  '@se-oss/object@1.0.0': {}
 
   '@shahrad/eslint-config@1.0.0(typescript@5.8.3)':
     dependencies:
@@ -2414,8 +2422,6 @@ snapshots:
   deep-eql@5.0.2: {}
 
   deep-is@0.1.4: {}
-
-  deepmerge@4.3.1: {}
 
   detect-indent@7.0.1: {}
 
