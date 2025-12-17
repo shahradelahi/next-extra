@@ -1,6 +1,6 @@
 'use client';
 
-import deepmerge from 'deepmerge';
+import { deepMerge } from '@se-oss/deep-merge';
 import React, { useContext, useMemo } from 'react';
 
 export interface PageContextProps<T = any> {
@@ -130,7 +130,7 @@ export function useServerInsertedContext<T extends Context = any>(): Readonly<T 
 
     for (const [s, { data }] of window.__next_c || []) {
       if (s === 'deepmerge') {
-        context = deepmerge(context, data);
+        context = deepMerge(context, data);
       } else {
         context = { ...context, ...data };
       }
