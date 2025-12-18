@@ -80,7 +80,7 @@
     "@types/react": "^19.2.2",
     "eslint": "^9.39.2",
     "globals": "^16.5.0",
-    "next": "^15.5.9",
+    "next": "^16.0.0",
     "prettier": "^3.7.4",
     "react": "^19.2.0",
     "tsup": "^8.5.1",
@@ -89,7 +89,7 @@
     "vitest": "^4.0.16"
   },
   "peerDependencies": {
-    "next": "14 || 15",
+    "next": "14 || 15 || 16",
     "react": "18 || 19"
   },
   "packageManager": "pnpm@10.26.0+sha512.3b3f6c725ebe712506c0ab1ad4133cf86b1f4b687effce62a9b38b4d72e3954242e643190fc51fa1642949c735f403debd44f5cb0edd657abe63a8b6a7e1e402"
