@@ -15,15 +15,15 @@ async function getRequestOrigin() {
 
 async function getRequestURL(callingExpression: string): Promise<URL> {
   const origin = await getRequestOrigin();
-  const staticStore = getStaticGenerationStore(callingExpression);
 
-  if (staticStore && 'urlPathname' in staticStore && !!staticStore.urlPathname) {
-    return new URL(staticStore.urlPathname, origin);
-  }
-
-  const requestStore = getExpectedRequestStore(callingExpression);
+  const requestStore = await getExpectedRequestStore(callingExpression);
   if (requestStore && 'url' in requestStore && !!requestStore.url) {
     return new URL(`${requestStore.url.pathname}${requestStore.url.search}`, origin);
+  }
+
+  const staticStore = getStaticGenerationStore(callingExpression);
+  if (staticStore && 'urlPathname' in staticStore && !!staticStore.urlPathname) {
+    return new URL(staticStore.urlPathname, origin);
   }
 
   // We should never get here.

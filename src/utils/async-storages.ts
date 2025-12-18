@@ -2,20 +2,30 @@ import type { AsyncLocalStorage } from 'node:async_hooks';
 
 import { safeImport } from '@/utils/dynamic-import';
 
-export function getExpectedRequestStore(callingExpression: string) {
-  const workUnitStoreModule = safeImport<
-    | {
-        getExpectedRequestStore: any;
-      }
-    | {
-        workUnitAsyncStorage: AsyncLocalStorage<any>;
-      }
-  >('next/dist/server/app-render/work-unit-async-storage.external');
+type WUAS =
+  | {
+      getExpectedRequestStore: any;
+    }
+  | {
+      workUnitAsyncStorage: AsyncLocalStorage<any>;
+    };
+
+async function getRequestStore(): Promise<WUAS | undefined> {
+  try {
+    return process.env['TURBOPACK']
+      ? await import('next/dist/server/app-render/work-unit-async-storage.external')
+      : safeImport('next/dist/server/app-render/work-unit-async-storage.external');
+  } catch {
+    return Promise.resolve(undefined);
+  }
+}
+
+export async function getExpectedRequestStore(callingExpression: string) {
+  const workUnitStoreModule = await getRequestStore();
   if (workUnitStoreModule) {
     if ('getExpectedRequestStore' in workUnitStoreModule) {
       return workUnitStoreModule.getExpectedRequestStore();
     }
-
     return workUnitStoreModule.workUnitAsyncStorage.getStore();
   }
 
