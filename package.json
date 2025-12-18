@@ -61,7 +61,7 @@
     "lint": "pnpm typecheck && eslint .",
     "lint:fix": "eslint --fix .",
     "prepublishOnly": "pnpm test && pnpm lint && pnpm format:check && pnpm build",
-    "test": "mocha \"**/*.test.ts\" --retries 2",
+    "test": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
   "prettier": "@shahrad/prettier-config",
@@ -75,20 +75,17 @@
     "@shahrad/eslint-config": "^1.0.0",
     "@shahrad/prettier-config": "^1.2.2",
     "@shahrad/tsconfig": "^1.1.0",
-    "@types/chai": "^5.2.2",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^22.16.5",
     "@types/react": "^18.3.23",
-    "chai": "^5.2.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
-    "mocha": "^10.8.2",
     "next": "^15.4.2",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^4.0.16"
   },
   "peerDependencies": {
     "next": "14 || 15",
