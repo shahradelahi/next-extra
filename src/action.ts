@@ -161,9 +161,9 @@ export function actionError(code: string, message: string): never {
  *   res.end('Cookie deleted');
  * }
  */
-export function cookies(): ResponseCookies {
+export async function cookies(): Promise<ResponseCookies> {
   const expression = 'cookies';
-  const store = getExpectedRequestStore(expression);
+  const store = await getExpectedRequestStore(expression);
 
   return store.mutableCookies;
 }

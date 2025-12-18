@@ -1,25 +1,29 @@
 import type { AsyncLocalStorage } from 'node:async_hooks';
 
-import { safeImport } from '@/utils/dynamic-import';
+import { importThis } from '@/utils/dynamic-import';
 
-export function getExpectedRequestStore(callingExpression: string) {
-  const workUnitStoreModule = safeImport<
-    | {
-        getExpectedRequestStore: any;
+export async function getExpectedRequestStore(callingExpression: string) {
+  try {
+    const workUnitStoreModule =
+      (await import('next/dist/server/app-render/work-unit-async-storage.external')) as
+        | {
+            getExpectedRequestStore: any;
+          }
+        | {
+            workUnitAsyncStorage: AsyncLocalStorage<any>;
+          };
+    if (workUnitStoreModule) {
+      if ('getExpectedRequestStore' in workUnitStoreModule) {
+        return workUnitStoreModule.getExpectedRequestStore();
       }
-    | {
-        workUnitAsyncStorage: AsyncLocalStorage<any>;
-      }
-  >('next/dist/server/app-render/work-unit-async-storage.external');
-  if (workUnitStoreModule) {
-    if ('getExpectedRequestStore' in workUnitStoreModule) {
-      return workUnitStoreModule.getExpectedRequestStore();
+
+      return workUnitStoreModule.workUnitAsyncStorage.getStore();
     }
-
-    return workUnitStoreModule.workUnitAsyncStorage.getStore();
+  } catch (_) {
+    // noop
   }
 
-  const requestStoreModule = safeImport<{
+  const requestStoreModule = importThis<{
     requestAsyncStorage: AsyncLocalStorage<any>;
   }>('next/dist/client/components/request-async-storage.external');
   if (requestStoreModule) {
@@ -36,7 +40,7 @@ export function getExpectedRequestStore(callingExpression: string) {
 }
 
 export function getStaticGenerationStore(callingExpression: string) {
-  const staticGenerationStoreModule = safeImport<{
+  const staticGenerationStoreModule = importThis<{
     staticGenerationAsyncStorage: any;
   }>('next/dist/client/components/static-generation-async-storage.external');
   if (staticGenerationStoreModule) {
