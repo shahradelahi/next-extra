@@ -55,6 +55,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "clean": "git clean -dfx \"**/node_modules/**\" dist .tsbuildinfo",
     "dev": "tsup --watch",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -66,30 +67,30 @@
   },
   "prettier": "@shahrad/prettier-config",
   "dependencies": {
-    "@edge-runtime/cookies": "^5.0.2",
+    "@edge-runtime/cookies": "^6.0.0",
     "@se-oss/deep-merge": "^1.0.0",
     "@se-oss/ip-address": "^1.1.0",
     "p-safe": "^1.0.0"
   },
   "devDependencies": {
-    "@shahrad/eslint-config": "^1.0.0",
+    "@shahrad/eslint-config": "^1.0.1",
     "@shahrad/prettier-config": "^1.2.2",
-    "@shahrad/tsconfig": "^1.1.0",
-    "@types/node": "^22.16.5",
-    "@types/react": "^18.3.23",
-    "eslint": "^9.39.1",
+    "@shahrad/tsconfig": "^1.2.0",
+    "@types/node": "^25.0.2",
+    "@types/react": "^19.2.2",
+    "eslint": "^9.39.2",
     "globals": "^16.5.0",
-    "next": "^15.4.2",
-    "prettier": "^3.6.2",
-    "react": "^18.3.1",
-    "tsup": "^8.5.0",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
+    "next": "^15.5.9",
+    "prettier": "^3.7.4",
+    "react": "^19.2.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
     "vitest": "^4.0.16"
   },
   "peerDependencies": {
     "next": "14 || 15",
     "react": "18 || 19"
   },
-  "packageManager": "pnpm@9.15.9"
+  "packageManager": "pnpm@10.26.0+sha512.3b3f6c725ebe712506c0ab1ad4133cf86b1f4b687effce62a9b38b4d72e3954242e643190fc51fa1642949c735f403debd44f5cb0edd657abe63a8b6a7e1e402"
 }
