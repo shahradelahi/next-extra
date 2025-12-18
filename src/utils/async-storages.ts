@@ -1,29 +1,35 @@
 import type { AsyncLocalStorage } from 'node:async_hooks';
 
-import { importThis } from '@/utils/dynamic-import';
+import { safeImport } from '@/utils/dynamic-import';
+
+type WUAS =
+  | {
+      getExpectedRequestStore: any;
+    }
+  | {
+      workUnitAsyncStorage: AsyncLocalStorage<any>;
+    };
+
+async function getRequestStore(): Promise<WUAS | undefined> {
+  try {
+    return process.env['TURBOPACK']
+      ? await import('next/dist/server/app-render/work-unit-async-storage.external')
+      : safeImport('next/dist/server/app-render/work-unit-async-storage.external');
+  } catch {
+    return Promise.resolve(undefined);
+  }
+}
 
 export async function getExpectedRequestStore(callingExpression: string) {
-  try {
-    const workUnitStoreModule =
-      (await import('next/dist/server/app-render/work-unit-async-storage.external')) as
-        | {
-            getExpectedRequestStore: any;
-          }
-        | {
-            workUnitAsyncStorage: AsyncLocalStorage<any>;
-          };
-    if (workUnitStoreModule) {
-      if ('getExpectedRequestStore' in workUnitStoreModule) {
-        return workUnitStoreModule.getExpectedRequestStore();
-      }
-
-      return workUnitStoreModule.workUnitAsyncStorage.getStore();
+  const workUnitStoreModule = await getRequestStore();
+  if (workUnitStoreModule) {
+    if ('getExpectedRequestStore' in workUnitStoreModule) {
+      return workUnitStoreModule.getExpectedRequestStore();
     }
-  } catch (_) {
-    // noop
+    return workUnitStoreModule.workUnitAsyncStorage.getStore();
   }
 
-  const requestStoreModule = importThis<{
+  const requestStoreModule = safeImport<{
     requestAsyncStorage: AsyncLocalStorage<any>;
   }>('next/dist/client/components/request-async-storage.external');
   if (requestStoreModule) {
@@ -40,7 +46,7 @@ export async function getExpectedRequestStore(callingExpression: string) {
 }
 
 export function getStaticGenerationStore(callingExpression: string) {
-  const staticGenerationStoreModule = importThis<{
+  const staticGenerationStoreModule = safeImport<{
     staticGenerationAsyncStorage: any;
   }>('next/dist/client/components/static-generation-async-storage.external');
   if (staticGenerationStoreModule) {
