@@ -79,7 +79,7 @@
     "@types/node": "^25.0.2",
     "@types/react": "^19.2.2",
     "eslint": "^9.39.2",
-    "globals": "^16.5.0",
+    "globals": "^17.0.0",
     "next": "^16.0.10",
     "prettier": "^3.7.4",
     "react": "^19.2.0",
