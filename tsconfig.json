@@ -2,8 +2,6 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@shahrad/tsconfig",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "module": "esnext",
     "paths": {
       "@/*": ["./src/*"],
       "@/tests/*": ["./tests/*"]
