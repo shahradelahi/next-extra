@@ -169,11 +169,3 @@ Thanks again for your support, it is much appreciated! 🙏
 ## License
 
 [MIT](/LICENSE) © [Shahrad Elahi](https://github.com/shahradelahi) and [contributors](https://github.com/shahradelahi/next-extra/graphs/contributors).
-
-## Notice of Non-Affiliation and Disclaimer
-
-[`next-extra`](https://github.com/shahradelahi/next-extra), is an independent project created by the community and is not affiliated with, endorsed, or sponsored by Vercel, the creators of Next.js. Next.js is a registered trademark of Vercel, Inc.
-
-This project utilizes the Next.js framework but is not a part of the official Next.js distribution. Any features, functionalities, or integrations provided by [`next-extra`](https://github.com/shahradelahi/next-extra) are solely the responsibility of the project maintainers and contributors.
-
-While we strive to ensure compatibility and proper functionality with Next.js, breaking changes can occur. We actively maintain this package for the latest versions of Next.js, which may require dropping support for older versions over time. Use of [`next-extra`](https://github.com/shahradelahi/next-extra) is at your own discretion and risk. We recommend thoroughly testing this project in your environment before deploying it to production.

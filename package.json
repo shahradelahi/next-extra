@@ -15,23 +15,24 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.cjs"
     },
     "./action": {
-      "require": "./dist/action.cjs",
-      "import": "./dist/action.js"
+      "import": "./dist/action.js",
+      "default": "./dist/action.cjs"
     },
     "./context": {
-      "require": "./dist/context.cjs",
-      "import": "./dist/context.js"
+      "import": "./dist/context.js",
+      "default": "./dist/context.cjs"
     },
     "./pathname": {
-      "require": "./dist/pathname.cjs",
-      "import": "./dist/pathname.js"
+      "import": "./dist/pathname.js",
+      "default": "./dist/pathname.cjs"
     }
   },
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "./dist",
   "typesVersions": {
     "*": {
@@ -68,25 +69,25 @@
   "prettier": "@shahrad/prettier-config",
   "dependencies": {
     "@edge-runtime/cookies": "^6.0.0",
-    "@se-oss/deep-merge": "^1.0.0",
+    "@se-oss/deep-merge": "^1.1.0",
     "@se-oss/ip-address": "^1.1.0",
-    "p-safe": "^1.0.0"
+    "p-safe": "^1.1.0"
   },
   "devDependencies": {
-    "@shahrad/eslint-config": "^1.0.1",
+    "@shahrad/eslint-config": "^1.1.0",
     "@shahrad/prettier-config": "^1.2.2",
     "@shahrad/tsconfig": "^1.2.0",
-    "@types/node": "^25.0.2",
-    "@types/react": "^19.2.2",
-    "eslint": "^9.39.2",
-    "globals": "^16.5.0",
-    "next": "^16.0.10",
-    "prettier": "^3.7.4",
-    "react": "^19.2.0",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.10",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
+    "next": "^16.1.6",
+    "prettier": "^3.8.3",
+    "react": "^19.2.4",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
   },
   "peerDependencies": {
     "next": "14 || 15 || 16",
@@ -98,5 +99,5 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264"
+  "packageManager": "pnpm@10.34.1+sha512.b58fbde6dca66a929538021581f648b4570b6ca19b18e7cbd7f2c07a7b24454155388dacdf08f2af3678e88a6d1fe04f9d609df24bf51735a060ea041b374ab7"
 }
