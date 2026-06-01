@@ -13,7 +13,7 @@ _next-extra_ is a utility package that allows you to enhance your Next.js projec
 
 - [Installation](#-installation)
 - [Usage](#-usage)
-  - [`next-extra/action`](#next-extraaction)
+  - [`next-extra/action` (Deprecated)](#next-extraaction-deprecated)
   - [`next-extra/context`](#next-extracontext)
   - [`next-extra/pathname`](#next-extrapathname)
 - [Contributing](#-contributing)
@@ -28,7 +28,9 @@ npm install next-extra
 
 ## 📖 Usage
 
-### `next-extra/action`
+### `next-extra/action` (Deprecated)
+
+> ⚠️ **DEPRECATED:** The `next-extra/action` module is deprecated and will be removed in the next major release. We highly recommend using [`next-zod-action`](https://github.com/shahradelahi/next-zod-action) for building type-safe, middleware-supported Next.js Server Actions.
 
 ###### API
 
@@ -161,8 +163,8 @@ Thanks again for your support, it is much appreciated! 🙏
 
 ## Relevant
 
+- [next-zod-action](https://github.com/shahradelahi/next-zod-action): Type-safe, builder-pattern interface for Next.js Server Actions
 - [next-csrf](https://github.com/shahradelahi/next-csrf): CSRF protection middleware for Next.Js
-- [next-zod-route](https://github.com/Melvynx/next-zod-route): Zod-safe routes for Next.Js App Directory
 
 ## License
 

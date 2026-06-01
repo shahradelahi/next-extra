@@ -112,6 +112,9 @@ function getClientIpFromXForwardedFor(value: any) {
 
 export type { Action };
 
+/**
+ * @deprecated Use `next-zod-action` instead. This method will be removed in the next major release.
+ */
 export function createAction<T extends AnyFunc<ActionContext<any>>>(fn: T): ActionFunc<T> {
   const action = new Action<T>(fn);
 
@@ -122,6 +125,9 @@ export function createAction<T extends AnyFunc<ActionContext<any>>>(fn: T): Acti
   });
 }
 
+/**
+ * @deprecated Use `next-zod-action` instead. This method will be removed in the next major release.
+ */
 export function actionError(code: string, message: string): never {
   const e = new ActionError(code, message);
   Error.captureStackTrace(e, actionError);
