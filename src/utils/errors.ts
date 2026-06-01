@@ -1,3 +1,6 @@
+/**
+ * @deprecated Use `next-zod-action` instead. This class will be removed in the next major release.
+ */
 export class ActionError extends Error {
   override name = 'ActionError';
   constructor(
@@ -16,6 +19,9 @@ export class ActionError extends Error {
   }
 }
 
+/**
+ * @deprecated Use `next-zod-action` instead. This interface will be removed in the next major release.
+ */
 export interface ActionErrorPlain {
   code: string;
   message: string;
