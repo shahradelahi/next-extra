@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@edge-runtime/cookies':
-        specifier: ^6.0.0
-        version: 6.0.0
+      '@se-oss/cookies':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@se-oss/deep-merge':
         specifier: ^1.1.0
         version: 1.1.0
@@ -19,10 +19,10 @@ importers:
         version: 1.1.0
       '@se-oss/next-route':
         specifier: '1'
-        version: 1.0.0(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(typescript@6.0.3)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4))
+        version: 1.0.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(typescript@6.0.3)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4))
       next-zod-action:
         specifier: '1'
-        version: 1.0.0(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4))
+        version: 1.0.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4))
       p-safe:
         specifier: ^1.1.0
         version: 1.1.0
@@ -108,10 +108,6 @@ packages:
   '@babel/types@7.29.7':
     resolution: {integrity: sha512-4zBIxpPzowiZpusoFkyGVwakdRJUyuH5PxQ/PrqghfdFWWasvnCdPfQXHrenDai+gyLARulZjZowCOj6fjT4pA==}
     engines: {node: '>=6.9.0'}
-
-  '@edge-runtime/cookies@6.0.0':
-    resolution: {integrity: sha512-VVO/8AwC2qVbygLb2IOkX1zWFx2yWIHzFv4D602CTnoRffd/+cdcXqpSydKaedFrk7a1dRYXbWwjzfV/gwZ2Gw==}
-    engines: {node: '>=18'}
 
   '@emnapi/runtime@1.10.0':
     resolution: {integrity: sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA==}
@@ -862,6 +858,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@se-oss/cookies@1.0.0':
+    resolution: {integrity: sha512-YpMmhPm8gh9tnjTw6I+Qp3p2BRyppAHp3x7KiLz6kCPHZo5KEp2bGbGi9aPk34unKSK23svpA+xCyEXZlDQ1jg==}
+
   '@se-oss/deep-merge@1.1.0':
     resolution: {integrity: sha512-4j99Pca2s0MvKFTE0SpIj/sHys1TupoE2TwrR2JjFUGRYO6IuS6UWVpZYKtOxjvPAIDXPBZSfU7yAQICo8r3Bw==}
 
@@ -952,9 +951,6 @@ packages:
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
       '@types/react': ^19.2.0
-
-  '@types/react@19.2.10':
-    resolution: {integrity: sha512-WPigyYuGhgZ/cTPRXB2EwUw+XvsRA3GqHlsP4qteqrnnjDrApbS7MxcGr/hke5iUoeB7E/gQtrs9I37zAJ0Vjw==}
 
   '@types/react@19.2.14':
     resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
@@ -1864,8 +1860,6 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@edge-runtime/cookies@6.0.0': {}
-
   '@emnapi/runtime@1.10.0':
     dependencies:
       tslib: 2.8.1
@@ -2302,6 +2296,8 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.60.4':
     optional: true
 
+  '@se-oss/cookies@1.0.0': {}
+
   '@se-oss/deep-merge@1.1.0':
     dependencies:
       '@se-oss/is': 1.0.0
@@ -2312,9 +2308,9 @@ snapshots:
     dependencies:
       '@se-oss/typeof': 1.1.0
 
-  '@se-oss/next-route@1.0.0(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(typescript@6.0.3)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4))':
+  '@se-oss/next-route@1.0.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(typescript@6.0.3)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4))':
     dependencies:
-      react-hook-action: 1.0.1(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4))
+      react-hook-action: 1.0.1(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4))
     optionalDependencies:
       '@se-oss/status-codes': 1.1.0
       react: 19.2.4
@@ -2377,13 +2373,9 @@ snapshots:
     dependencies:
       undici-types: 7.24.6
 
-  '@types/react-dom@19.2.3(@types/react@19.2.10)':
+  '@types/react-dom@19.2.3(@types/react@19.2.14)':
     dependencies:
-      '@types/react': 19.2.10
-
-  '@types/react@19.2.10':
-    dependencies:
-      csstype: 3.2.3
+      '@types/react': 19.2.14
 
   '@types/react@19.2.14':
     dependencies:
@@ -2851,11 +2843,11 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-zod-action@1.0.0(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4)):
+  next-zod-action@1.0.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zod@4.4.3)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4)):
     dependencies:
       react: 19.2.4
       react-dom: 18.3.1(react@19.2.4)
-      react-hook-action: 1.0.1(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4))
+      react-hook-action: 1.0.1(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4))
       zod: 4.4.3
     transitivePeerDependencies:
       - '@types/react'
@@ -2971,14 +2963,14 @@ snapshots:
       react: 19.2.4
       scheduler: 0.23.2
 
-  react-hook-action@1.0.1(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zustand@5.0.14(@types/react@19.2.10)(react@19.2.4)):
+  react-hook-action@1.0.1(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@18.3.1(react@19.2.4))(react@19.2.4)(zustand@5.0.14(@types/react@19.2.14)(react@19.2.4)):
     dependencies:
-      '@types/react': 19.2.10
-      '@types/react-dom': 19.2.3(@types/react@19.2.10)
+      '@types/react': 19.2.14
+      '@types/react-dom': 19.2.3(@types/react@19.2.14)
       p-safe: 1.1.0
       react: 19.2.4
       react-dom: 18.3.1(react@19.2.4)
-      zustand: 5.0.14(@types/react@19.2.10)(react@19.2.4)
+      zustand: 5.0.14(@types/react@19.2.14)(react@19.2.4)
 
   react@19.2.4: {}
 
@@ -3254,7 +3246,7 @@ snapshots:
 
   zod@4.4.3: {}
 
-  zustand@5.0.14(@types/react@19.2.10)(react@19.2.4):
+  zustand@5.0.14(@types/react@19.2.14)(react@19.2.4):
     optionalDependencies:
-      '@types/react': 19.2.10
+      '@types/react': 19.2.14
       react: 19.2.4
