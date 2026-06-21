@@ -1,4 +1,4 @@
-import { ResponseCookies } from '@edge-runtime/cookies';
+import { ResponseCookies } from '@se-oss/cookies';
 import { isValidIP } from '@se-oss/ip-address';
 import { headers } from 'next/headers.js';
 import type { SafeReturn } from 'p-safe';
@@ -243,4 +243,4 @@ export async function clientIP(): Promise<string | null> {
 
 // -- Third ---------------------------
 
-export { ResponseCookies, RequestCookies } from '@edge-runtime/cookies';
+export { ResponseCookies, RequestCookies } from '@se-oss/cookies';

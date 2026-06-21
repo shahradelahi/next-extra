@@ -68,7 +68,7 @@
   },
   "prettier": "@shahrad/prettier-config",
   "dependencies": {
-    "@edge-runtime/cookies": "^6.0.0",
+    "@se-oss/cookies": "^1.0.0",
     "@se-oss/deep-merge": "^1.1.0",
     "@se-oss/ip-address": "^1.1.0",
     "p-safe": "^1.1.0"
