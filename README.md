@@ -163,8 +163,17 @@ Thanks again for your support, it is much appreciated! 🙏
 
 ## Relevant
 
-- [next-zod-action](https://github.com/shahradelahi/next-zod-action): Type-safe, builder-pattern interface for Next.js Server Actions
-- [next-csrf](https://github.com/shahradelahi/next-csrf): CSRF protection middleware for Next.Js
+#### **[next-route](https://github.com/shahradelahi/next-route)**
+
+A schema-agnostic library for building and consuming Next.js API Routes with end-to-end type safety.
+
+#### **[next-zod-action](https://github.com/shahradelahi/next-zod-action)**
+
+A type-safe, builder-pattern interface for Next.js Server Actions. It offers a middleware-supported approach optimized for the `use server` directive.
+
+#### **[next-csrf](https://github.com/shahradelahi/next-csrf)**
+
+CSRF protection middleware for Next.js APIs and Server Actions.
 
 ## License
 
